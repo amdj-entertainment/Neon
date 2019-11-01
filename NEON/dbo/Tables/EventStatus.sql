@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[EventStatus]
+(
+	[Id]			BIGINT IDENTITY (1,1) CONSTRAINT [PK_EventStatus] PRIMARY KEY NOT NULL,
+	[UniqueId]		UNIQUEIDENTIFIER CONSTRAINT [DFEventStatus_UniqueId] DEFAULT (NEWID()) NOT NULL,
+	[Name]			NVARCHAR (25) NOT NULL,
+	[Description]	NVARCHAR (255) NOT NULL,
+	[LastUpdate]	DATETIME2 CONSTRAINT [DF_EventStatus_LastUpdate] DEFAULT (GETDATE()) NOT NULL,
+	[CreateDate]	DATETIME2 CONSTRAINT [DF_EventStatus_CreateDate] DEFAULT (GETDATE()) NOT NULL,
+	CONSTRAINT [UK_EventStatus_UniqueId] UNIQUE ([UniqueId])
+)

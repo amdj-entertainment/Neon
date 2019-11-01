@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Countries]
+(
+	[Id]			BIGINT IDENTITY (1,1) CONSTRAINT [PK_Countries] PRIMARY KEY NOT NULL,
+	[UniqueId]		UNIQUEIDENTIFIER CONSTRAINT [DF_Countries_UniqueId] DEFAULT (NEWID()) NOT NULL,
+	[Name]			NVARCHAR (50) NOT NULL,
+	[LastUpdate]	DATETIME2 CONSTRAINT [DF_Countries_LastUpdate] DEFAULT (GETDATE()) NOT NULL,
+	[CreateDate]	DATETIME2 CONSTRAINT [DF_Countries_CreateDate] DEFAULT (GETDATE()) NOT NULL,
+	CONSTRAINT [UK_Countries_UniqueId] UNIQUE ([UniqueId])
+)

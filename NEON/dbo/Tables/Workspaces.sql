@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Workspaces]
+(
+	[Id]			BIGINT IDENTITY (1,1) CONSTRAINT [PK_Workspaces] PRIMARY KEY NOT NULL,
+	[UniqueId]		UNIQUEIDENTIFIER CONSTRAINT [DF_Workspaces_UniqueId] DEFAULT (NEWID()) NOT NULL,
+	[Name]			NVARCHAR (256) NOT NULL,
+	[LastUpdate]	DATETIME2 CONSTRAINT [DF_Workspaces_LastUpdate] DEFAULT (GETDATE()) NOT NULL,
+	[CreateDate]	DATETIME2 CONSTRAINT [DF_Workspaces_CreateDate] DEFAULT (GETDATE()) NOT NULL,
+	CONSTRAINT [UK_Workspaces_UniqueId] UNIQUE ([UniqueId])
+)

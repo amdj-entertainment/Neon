@@ -1,0 +1,1180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NeonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CountryId" Type="bigint" Nullable="false" />
+          <Property Name="PrimaryAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="SecondAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="StateId" Type="bigint" />
+          <Property Name="Province" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Artists">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="256" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArtistsTracks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ArtistId" Type="bigint" Nullable="false" />
+          <Property Name="TrackId" Type="bigint" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WorkspaceId" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="StatusId" Type="bigint" Nullable="false" />
+          <Property Name="AddressId" Type="bigint" />
+          <Property Name="VenueId" Type="bigint" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RequestOpenDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RequestCloseDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EventId" Type="bigint" Nullable="false" />
+          <Property Name="TrackId" Type="bigint" Nullable="false" />
+          <Property Name="WasPlayed" Type="bit" Nullable="false" />
+          <Property Name="Amount" Type="bigint" Nullable="false" />
+          <Property Name="Archived" Type="bit" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Spotify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpotifyId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PrewviewUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ArtSmallUrl" Type="nvarchar(max)" />
+          <Property Name="ArtMediumUrl" Type="nvarchar(max)" />
+          <Property Name="ArtLargeUrl" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tracks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpotifyId" Type="bigint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Explicit" Type="bit" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WorkspaceId" Type="bigint" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ConfirmedEmail" Type="bit" Nullable="false" />
+          <Property Name="HashedPassword" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersProfiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AvatarUrl" Type="nvarchar(max)" />
+          <Property Name="AddressId" Type="bigint" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WorkspaceId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressId" Type="bigint" Nullable="false" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="ContactUserId" Type="bigint" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Workspaces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Addresses_CountryId">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_StateId">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArtistsTracks_ArtistId">
+          <End Role="Artists" Type="Self.Artists" Multiplicity="1" />
+          <End Role="ArtistsTracks" Type="Self.ArtistsTracks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artists">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArtistsTracks">
+              <PropertyRef Name="ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_AddressId">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_StatusId">
+          <End Role="EventStatus" Type="Self.EventStatus" Multiplicity="1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_VenueId">
+          <End Role="Venues" Type="Self.Venues" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_WorkspaceId">
+          <End Role="Workspaces" Type="Self.Workspaces" Multiplicity="1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workspaces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="WorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_EventId">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_TrackId">
+          <End Role="Tracks" Type="Self.Tracks" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tracks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="TrackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tracks_SpotifyId">
+          <End Role="Spotify" Type="Self.Spotify" Multiplicity="0..1" />
+          <End Role="Tracks" Type="Self.Tracks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spotify">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tracks">
+              <PropertyRef Name="SpotifyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Workspaces">
+          <End Role="Workspaces" Type="Self.Workspaces" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workspaces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="WorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProfiles_AddressId">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
+          <End Role="UsersProfiles" Type="Self.UsersProfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersProfiles">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProfiles_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersProfiles" Type="Self.UsersProfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersProfiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venues_AddressId">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+          <End Role="Venues" Type="Self.Venues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venues">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venues_ContactUserId">
+          <End Role="UsersProfiles" Type="Self.UsersProfiles" Multiplicity="0..1" />
+          <End Role="Venues" Type="Self.Venues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersProfiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venues">
+              <PropertyRef Name="ContactUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venues_WorkspaceId">
+          <End Role="Workspaces" Type="Self.Workspaces" Multiplicity="1" />
+          <End Role="Venues" Type="Self.Venues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workspaces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venues">
+              <PropertyRef Name="WorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NeonModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artists" EntityType="Self.Artists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArtistsTracks" EntityType="Self.ArtistsTracks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventStatus" EntityType="Self.EventStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spotify" EntityType="Self.Spotify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tracks" EntityType="Self.Tracks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersProfiles" EntityType="Self.UsersProfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venues" EntityType="Self.Venues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workspaces" EntityType="Self.Workspaces" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Addresses_CountryId" Association="Self.FK_Addresses_CountryId">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_StateId" Association="Self.FK_Addresses_StateId">
+            <End Role="State" EntitySet="State" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArtistsTracks_ArtistId" Association="Self.FK_ArtistsTracks_ArtistId">
+            <End Role="Artists" EntitySet="Artists" />
+            <End Role="ArtistsTracks" EntitySet="ArtistsTracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_AddressId" Association="Self.FK_Events_AddressId">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_StatusId" Association="Self.FK_Events_StatusId">
+            <End Role="EventStatus" EntitySet="EventStatus" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_VenueId" Association="Self.FK_Events_VenueId">
+            <End Role="Venues" EntitySet="Venues" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_WorkspaceId" Association="Self.FK_Events_WorkspaceId">
+            <End Role="Workspaces" EntitySet="Workspaces" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_EventId" Association="Self.FK_Requests_EventId">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_TrackId" Association="Self.FK_Requests_TrackId">
+            <End Role="Tracks" EntitySet="Tracks" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tracks_SpotifyId" Association="Self.FK_Tracks_SpotifyId">
+            <End Role="Spotify" EntitySet="Spotify" />
+            <End Role="Tracks" EntitySet="Tracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Workspaces" Association="Self.FK_Users_Workspaces">
+            <End Role="Workspaces" EntitySet="Workspaces" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProfiles_AddressId" Association="Self.FK_UsersProfiles_AddressId">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProfiles_UserId" Association="Self.FK_UsersProfiles_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venues_AddressId" Association="Self.FK_Venues_AddressId">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Venues" EntitySet="Venues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venues_ContactUserId" Association="Self.FK_Venues_ContactUserId">
+            <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+            <End Role="Venues" EntitySet="Venues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venues_WorkspaceId" Association="Self.FK_Venues_WorkspaceId">
+            <End Role="Workspaces" EntitySet="Workspaces" />
+            <End Role="Venues" EntitySet="Venues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NeonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="CountryId" Type="Int64" Nullable="false" />
+          <Property Name="PrimaryAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SecondAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int64" />
+          <Property Name="Province" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Addresses_CountryId" FromRole="Addresses" ToRole="Countries" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Addresses_StateId" FromRole="Addresses" ToRole="State" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_AddressId" FromRole="Addresses" ToRole="Events" />
+          <NavigationProperty Name="UsersProfiles" Relationship="Self.FK_UsersProfiles_AddressId" FromRole="Addresses" ToRole="UsersProfiles" />
+          <NavigationProperty Name="Venues" Relationship="Self.FK_Venues_AddressId" FromRole="Addresses" ToRole="Venues" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ArtistsTracks" Relationship="Self.FK_ArtistsTracks_ArtistId" FromRole="Artists" ToRole="ArtistsTracks" />
+        </EntityType>
+        <EntityType Name="ArtistsTrack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="ArtistId" Type="Int64" Nullable="false" />
+          <Property Name="TrackId" Type="Int64" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK_ArtistsTracks_ArtistId" FromRole="ArtistsTracks" ToRole="Artists" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_CountryId" FromRole="Countries" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="WorkspaceId" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusId" Type="Int64" Nullable="false" />
+          <Property Name="AddressId" Type="Int64" />
+          <Property Name="VenueId" Type="Int64" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RequestOpenDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RequestCloseDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Events_AddressId" FromRole="Events" ToRole="Addresses" />
+          <NavigationProperty Name="EventStatus" Relationship="Self.FK_Events_StatusId" FromRole="Events" ToRole="EventStatus" />
+          <NavigationProperty Name="Venue" Relationship="Self.FK_Events_VenueId" FromRole="Events" ToRole="Venues" />
+          <NavigationProperty Name="Workspace" Relationship="Self.FK_Events_WorkspaceId" FromRole="Events" ToRole="Workspaces" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_EventId" FromRole="Events" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="EventStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_StatusId" FromRole="EventStatus" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="EventId" Type="Int64" Nullable="false" />
+          <Property Name="TrackId" Type="Int64" Nullable="false" />
+          <Property Name="WasPlayed" Type="Boolean" Nullable="false" />
+          <Property Name="Amount" Type="Int64" Nullable="false" />
+          <Property Name="Archived" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Requests_EventId" FromRole="Requests" ToRole="Events" />
+          <NavigationProperty Name="Track" Relationship="Self.FK_Requests_TrackId" FromRole="Requests" ToRole="Tracks" />
+        </EntityType>
+        <EntityType Name="Spotify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="SpotifyId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrewviewUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ArtSmallUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArtMediumUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArtLargeUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Tracks" Relationship="Self.FK_Tracks_SpotifyId" FromRole="Spotify" ToRole="Tracks" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_StateId" FromRole="State" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="SpotifyId" Type="Int64" />
+          <Property Name="Title" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Explicit" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_TrackId" FromRole="Tracks" ToRole="Requests" />
+          <NavigationProperty Name="Spotify" Relationship="Self.FK_Tracks_SpotifyId" FromRole="Tracks" ToRole="Spotify" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="WorkspaceId" Type="Int64" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConfirmedEmail" Type="Boolean" Nullable="false" />
+          <Property Name="HashedPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Workspace" Relationship="Self.FK_Users_Workspaces" FromRole="Users" ToRole="Workspaces" />
+          <NavigationProperty Name="UsersProfiles" Relationship="Self.FK_UsersProfiles_UserId" FromRole="Users" ToRole="UsersProfiles" />
+        </EntityType>
+        <EntityType Name="UsersProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AvatarUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int64" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_UsersProfiles_AddressId" FromRole="UsersProfiles" ToRole="Addresses" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UsersProfiles_UserId" FromRole="UsersProfiles" ToRole="Users" />
+          <NavigationProperty Name="Venues" Relationship="Self.FK_Venues_ContactUserId" FromRole="UsersProfiles" ToRole="Venues" />
+        </EntityType>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="WorkspaceId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="Int64" Nullable="false" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="ContactUserId" Type="Int64" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Venues_AddressId" FromRole="Venues" ToRole="Addresses" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_VenueId" FromRole="Venues" ToRole="Events" />
+          <NavigationProperty Name="UsersProfile" Relationship="Self.FK_Venues_ContactUserId" FromRole="Venues" ToRole="UsersProfiles" />
+          <NavigationProperty Name="Workspace" Relationship="Self.FK_Venues_WorkspaceId" FromRole="Venues" ToRole="Workspaces" />
+        </EntityType>
+        <EntityType Name="Workspace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_WorkspaceId" FromRole="Workspaces" ToRole="Events" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Workspaces" FromRole="Workspaces" ToRole="Users" />
+          <NavigationProperty Name="Venues" Relationship="Self.FK_Venues_WorkspaceId" FromRole="Workspaces" ToRole="Venues" />
+        </EntityType>
+        <Association Name="FK_Addresses_CountryId">
+          <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_StateId">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_AddressId">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProfiles_AddressId">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="UsersProfiles" Type="Self.UsersProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersProfiles">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venues_AddressId">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+          <End Role="Venues" Type="Self.Venue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venues">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArtistsTracks_ArtistId">
+          <End Role="Artists" Type="Self.Artist" Multiplicity="1" />
+          <End Role="ArtistsTracks" Type="Self.ArtistsTrack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artists">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArtistsTracks">
+              <PropertyRef Name="ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_StatusId">
+          <End Role="EventStatus" Type="NeonModel.EventStatus" Multiplicity="1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_VenueId">
+          <End Role="Venues" Type="Self.Venue" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_WorkspaceId">
+          <End Role="Workspaces" Type="Self.Workspace" Multiplicity="1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workspaces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="WorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_EventId">
+          <End Role="Events" Type="Self.Event" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_TrackId">
+          <End Role="Tracks" Type="Self.Track" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tracks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="TrackId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tracks_SpotifyId">
+          <End Role="Spotify" Type="Self.Spotify" Multiplicity="0..1" />
+          <End Role="Tracks" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spotify">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tracks">
+              <PropertyRef Name="SpotifyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Workspaces">
+          <End Role="Workspaces" Type="Self.Workspace" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workspaces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="WorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProfiles_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersProfiles" Type="Self.UsersProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersProfiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venues_ContactUserId">
+          <End Role="UsersProfiles" Type="Self.UsersProfile" Multiplicity="0..1" />
+          <End Role="Venues" Type="Self.Venue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersProfiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venues">
+              <PropertyRef Name="ContactUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venues_WorkspaceId">
+          <End Role="Workspaces" Type="Self.Workspace" Multiplicity="1" />
+          <End Role="Venues" Type="Self.Venue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workspaces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venues">
+              <PropertyRef Name="WorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NeonContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Artists" EntityType="Self.Artist" />
+          <EntitySet Name="ArtistsTracks" EntityType="Self.ArtistsTrack" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="EventStatus" EntityType="NeonModel.EventStatus" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="Spotifies" EntityType="Self.Spotify" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Tracks" EntityType="Self.Track" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UsersProfiles" EntityType="Self.UsersProfile" />
+          <EntitySet Name="Venues" EntityType="Self.Venue" />
+          <EntitySet Name="Workspaces" EntityType="Self.Workspace" />
+          <AssociationSet Name="FK_Addresses_CountryId" Association="Self.FK_Addresses_CountryId">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_StateId" Association="Self.FK_Addresses_StateId">
+            <End Role="State" EntitySet="States" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_AddressId" Association="Self.FK_Events_AddressId">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProfiles_AddressId" Association="Self.FK_UsersProfiles_AddressId">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venues_AddressId" Association="Self.FK_Venues_AddressId">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Venues" EntitySet="Venues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArtistsTracks_ArtistId" Association="Self.FK_ArtistsTracks_ArtistId">
+            <End Role="Artists" EntitySet="Artists" />
+            <End Role="ArtistsTracks" EntitySet="ArtistsTracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_StatusId" Association="Self.FK_Events_StatusId">
+            <End Role="EventStatus" EntitySet="EventStatus" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_VenueId" Association="Self.FK_Events_VenueId">
+            <End Role="Venues" EntitySet="Venues" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_WorkspaceId" Association="Self.FK_Events_WorkspaceId">
+            <End Role="Workspaces" EntitySet="Workspaces" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_EventId" Association="Self.FK_Requests_EventId">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_TrackId" Association="Self.FK_Requests_TrackId">
+            <End Role="Tracks" EntitySet="Tracks" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tracks_SpotifyId" Association="Self.FK_Tracks_SpotifyId">
+            <End Role="Spotify" EntitySet="Spotifies" />
+            <End Role="Tracks" EntitySet="Tracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Workspaces" Association="Self.FK_Users_Workspaces">
+            <End Role="Workspaces" EntitySet="Workspaces" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProfiles_UserId" Association="Self.FK_UsersProfiles_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venues_ContactUserId" Association="Self.FK_Venues_ContactUserId">
+            <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+            <End Role="Venues" EntitySet="Venues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venues_WorkspaceId" Association="Self.FK_Venues_WorkspaceId">
+            <End Role="Workspaces" EntitySet="Workspaces" />
+            <End Role="Venues" EntitySet="Venues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NeonModelStoreContainer" CdmEntityContainer="NeonContext">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="NeonModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="PrimaryAddress" ColumnName="PrimaryAddress" />
+                <ScalarProperty Name="SecondAddress" ColumnName="SecondAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="NeonModel.Artist">
+              <MappingFragment StoreEntitySet="Artists">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArtistsTracks">
+            <EntityTypeMapping TypeName="NeonModel.ArtistsTrack">
+              <MappingFragment StoreEntitySet="ArtistsTracks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+                <ScalarProperty Name="TrackId" ColumnName="TrackId" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="NeonModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="NeonModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="WorkspaceId" ColumnName="WorkspaceId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="VenueId" ColumnName="VenueId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="RequestOpenDate" ColumnName="RequestOpenDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventStatus">
+            <EntityTypeMapping TypeName="NeonModel.EventStatus">
+              <MappingFragment StoreEntitySet="EventStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="NeonModel.Request">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="TrackId" ColumnName="TrackId" />
+                <ScalarProperty Name="WasPlayed" ColumnName="WasPlayed" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Archived" ColumnName="Archived" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spotifies">
+            <EntityTypeMapping TypeName="NeonModel.Spotify">
+              <MappingFragment StoreEntitySet="Spotify">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="SpotifyId" ColumnName="SpotifyId" />
+                <ScalarProperty Name="PrewviewUrl" ColumnName="PrewviewUrl" />
+                <ScalarProperty Name="ArtSmallUrl" ColumnName="ArtSmallUrl" />
+                <ScalarProperty Name="ArtMediumUrl" ColumnName="ArtMediumUrl" />
+                <ScalarProperty Name="ArtLargeUrl" ColumnName="ArtLargeUrl" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="NeonModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tracks">
+            <EntityTypeMapping TypeName="NeonModel.Track">
+              <MappingFragment StoreEntitySet="Tracks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="SpotifyId" ColumnName="SpotifyId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Explicit" ColumnName="Explicit" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NeonModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="WorkspaceId" ColumnName="WorkspaceId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ConfirmedEmail" ColumnName="ConfirmedEmail" />
+                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersProfiles">
+            <EntityTypeMapping TypeName="NeonModel.UsersProfile">
+              <MappingFragment StoreEntitySet="UsersProfiles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venues">
+            <EntityTypeMapping TypeName="NeonModel.Venue">
+              <MappingFragment StoreEntitySet="Venues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="WorkspaceId" ColumnName="WorkspaceId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ContactUserId" ColumnName="ContactUserId" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workspaces">
+            <EntityTypeMapping TypeName="NeonModel.Workspace">
+              <MappingFragment StoreEntitySet="Workspaces">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -12,6 +12,7 @@ namespace ADE.NEON.API
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            IocConfig.Initialize();
         }
     }
 }
