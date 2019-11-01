@@ -18,12 +18,12 @@ namespace ADE.NEON.DAL.Events
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<EventModel>> GetEventsForWorkspace(UnitOfWork unitOfWork, long workspaceId)
+        public async Task<IEnumerable<EventLimitedModel>> GetEventsForWorkspace(UnitOfWork unitOfWork, long workspaceId)
         {
             try
             {
                 var trackedEntity = unitOfWork.NeonContext.Events.Where(x => x.WorkspaceId == workspaceId);
-                return await _mapper.ProjectTo<EventModel>(trackedEntity).ToListAsync();
+                return await _mapper.ProjectTo<EventLimitedModel>(trackedEntity).ToListAsync();
 
             }
             catch (Exception ex)

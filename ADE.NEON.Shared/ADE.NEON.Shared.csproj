@@ -45,8 +45,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IocConfig.cs" />
+    <Compile Include="Models\AddressModel.cs" />
+    <Compile Include="Models\CountryModel.cs" />
+    <Compile Include="Models\EventLimitedModel.cs" />
     <Compile Include="Models\EventModel.cs" />
+    <Compile Include="Models\StateModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserProfileLimitedModel.cs" />
+    <Compile Include="Models\UserProfileModel.cs" />
+    <Compile Include="Models\VenueModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CurrentTimeProvider.cs" />
     <Compile Include="Utilities\ICurrentTimeProvider.cs" />

@@ -11,8 +11,8 @@ namespace ADE.NEON.Shared.Models
         public string PrimaryAddress { get; set; }
         public string SecondaryAddress { get; set; }
         public string City { get; set; }
-        public StateModel State { get; set; }
-        public CountryModel Country { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
         public string Province { get; set; }
         public string PostalCode { get; set; }
     }

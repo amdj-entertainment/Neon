@@ -14,7 +14,7 @@ namespace ADE.NEON.BL.Events
         /// </summary>
         /// <param name="workspaceId"></param>
         /// <returns></returns>
-        Task<IEnumerable<EventModel>> GetEventsForWorkspace(long workspaceId);
+        Task<IEnumerable<EventLimitedModel>> GetEventsForWorkspace(long workspaceId);
 
         /// <summary>
         /// 

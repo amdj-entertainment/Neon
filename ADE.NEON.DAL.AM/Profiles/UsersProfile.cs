@@ -9,12 +9,13 @@ using AutoMapper;
 
 namespace ADE.NEON.DAL.AM.Profiles
 {
-    internal class EventsProfile : Profile
+    public class UsersProfile : Profile
     {
-        public EventsProfile()
+        public UsersProfile()
         {
-            CreateMap<Event, EventModel>();
-            CreateMap<Event, EventLimitedModel>();
+            CreateMap<User, UserModel>();
+            CreateMap<EF.UsersProfile, UserProfileModel>();
+            CreateMap<EF.UsersProfile, UserProfileLimitedModel>();
         }
     }
 }

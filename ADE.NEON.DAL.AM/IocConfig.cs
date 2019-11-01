@@ -15,7 +15,10 @@ namespace ADE.NEON.DAL.AM
         {
             var configuration = new MapperConfiguration(cfg =>
             {
+                cfg.AddProfile<AddressesProfile>();
                 cfg.AddProfile<EventsProfile>();
+                cfg.AddProfile<UsersProfile>();
+                cfg.AddProfile<VenuesProfile>();
             });
 
             builder.RegisterType<Mapper>().As<IMapper>().WithParameter("configurationProvider", configuration);

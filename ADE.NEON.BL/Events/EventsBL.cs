@@ -19,7 +19,7 @@ namespace ADE.NEON.BL.Events
             _unitOfWorkFactory = unitOfWorkFactory;
             _eventsDAL = eventsDAL;
         }
-        public async Task<IEnumerable<EventModel>> GetEventsForWorkspace(long workspaceId)
+        public async Task<IEnumerable<EventLimitedModel>> GetEventsForWorkspace(long workspaceId)
         {
             using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork())
             {
