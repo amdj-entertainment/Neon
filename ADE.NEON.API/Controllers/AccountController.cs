@@ -16,12 +16,12 @@ namespace ADE.NEON.API.Controllers
 
         }
 
-        //[AllowAnonymous]
-        //[HttpGet, Route("register")]
-        //public async Task<IHttpActionResult> RegisterUser(UserRegisterModel registerModel)
-        //{
-        //    if (!ModelState.IsValid) return BadRequest(ModelState);
+        [AllowAnonymous]
+        [HttpPost, Route("register")]
+        public async Task<IHttpActionResult> RegisterUser(UserRegisterModel registerModel)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        //}
+        }
     }
 }

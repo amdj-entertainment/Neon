@@ -1,6 +1,6 @@
 ﻿namespace ADE.NEON.Shared.Models.Users
 {
-    public class UserModel
+    public class UserModel : IdentityUser
     {
     }
 }
