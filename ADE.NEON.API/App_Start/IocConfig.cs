@@ -5,7 +5,7 @@ using Autofac.Integration.WebApi;
 
 namespace ADE.NEON.API
 {
-    public class IocConfig
+    public static class IocConfig
     {
         public static void Initialize()
         {

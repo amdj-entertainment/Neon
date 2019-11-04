@@ -9,7 +9,7 @@ using AutoMapper;
 
 namespace ADE.NEON.DAL.AM
 {
-    public class IocConfig
+    public static class IocConfig
     {
         public static void RegisterComponents(ContainerBuilder builder)
         {
@@ -17,8 +17,9 @@ namespace ADE.NEON.DAL.AM
             {
                 cfg.AddProfile<AddressesProfile>();
                 cfg.AddProfile<EventsProfile>();
-                cfg.AddProfile<UsersProfile>();
+                cfg.AddProfile<UsersProfiles>();
                 cfg.AddProfile<VenuesProfile>();
+                cfg.AddProfile<WorkspaceProfile>();
             });
 
             builder.RegisterType<Mapper>().As<IMapper>().WithParameter("configurationProvider", configuration);

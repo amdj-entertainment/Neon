@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ADE.NEON.Shared.Models.Address;
+using ADE.NEON.Shared.Models.Users;
 
-namespace ADE.NEON.Shared.Models
+namespace ADE.NEON.Shared.Models.Venues
 {
     public class VenueModel
     {

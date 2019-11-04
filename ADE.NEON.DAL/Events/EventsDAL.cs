@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ADE.NEON.Shared.Models;
+using ADE.NEON.Shared.Models.Events;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 
 namespace ADE.NEON.DAL.Events
 {
     public class EventsDAL : IEventsDAL
     {
         private IMapper _mapper;
+
         public EventsDAL(IMapper mapper)
         {
             _mapper = mapper;
@@ -26,7 +25,7 @@ namespace ADE.NEON.DAL.Events
                 return await _mapper.ProjectTo<EventLimitedModel>(trackedEntity).ToListAsync();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO: LOG ERRORS
                 throw;
@@ -42,7 +41,7 @@ namespace ADE.NEON.DAL.Events
 
                 return _mapper.Map<EventModel>(trackedEntity);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO: LOG ERRORS
                 throw;

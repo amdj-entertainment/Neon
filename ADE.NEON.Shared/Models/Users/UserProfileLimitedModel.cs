@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ADE.NEON.Shared.Models
+﻿namespace ADE.NEON.Shared.Models.Users
 {
     public class UserProfileLimitedModel
     {
@@ -12,6 +6,6 @@ namespace ADE.NEON.Shared.Models
         public string LastName { get; set; }
         public string FullName => string.Join(" ", FirstName, LastName);
         public string PhoneNumber { get; set; }
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
     }
 }

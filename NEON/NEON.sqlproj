@@ -61,6 +61,7 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="Data" />
     <Folder Include="Data\_Always" />
+    <Folder Include="Data\_Always\Events" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Requests.sql" />
@@ -77,8 +78,16 @@
     <Build Include="dbo\Tables\Countries.sql" />
     <Build Include="dbo\Tables\State.sql" />
     <Build Include="dbo\Tables\Venues.sql" />
+    <Build Include="dbo\Tables\UserRoles.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="local.publish.xml" />
+    <None Include="dev.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Data\_Always\PostDeployment.sql" />
+    <None Include="Data\PostDeployment.sql" />
+    <None Include="Data\_Always\Events\EventStatus.sql" />
   </ItemGroup>
 </Project>

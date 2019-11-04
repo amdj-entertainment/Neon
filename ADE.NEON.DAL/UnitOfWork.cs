@@ -12,6 +12,7 @@ namespace ADE.NEON.DAL
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         internal NeonContext NeonContext;
+        internal AuthContext AuthContext;
         internal DbContextTransaction DbContextTransaction;
 
         private bool _disposed;
@@ -21,8 +22,9 @@ namespace ADE.NEON.DAL
             try
             {
                 if (NeonContext != null) await NeonContext.SaveChangesAsync();
+                if (AuthContext != null) await AuthContext.SaveChangesAsync();
             }
-            catch (DbEntityValidationException dbEntityValidationException)
+            catch (DbEntityValidationException)
             {
                 DbContextTransaction.Rollback();
                 // TODO: LOG ERRORS
@@ -44,6 +46,7 @@ namespace ADE.NEON.DAL
 
             DbContextTransaction?.Dispose();
             NeonContext?.Dispose();
+            AuthContext?.Dispose();
 
             _disposed = true;
         }

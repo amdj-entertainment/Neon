@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ADE.NEON.DAL;
 using ADE.NEON.DAL.Events;
-using ADE.NEON.Shared.Models;
+using ADE.NEON.Shared.Models.Events;
 
 namespace ADE.NEON.BL.Events
 {

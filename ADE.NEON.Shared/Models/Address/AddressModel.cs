@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ADE.NEON.Shared.Models
+namespace ADE.NEON.Shared.Models.Address
 {
     public class AddressModel
     {

@@ -6,14 +6,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using ADE.NEON.BL.Events;
-using ADE.NEON.Shared.Models;
 
 namespace ADE.NEON.API.Controllers
 {
     [RoutePrefix("events")]
     public class EventsController : ApiController
     {
-        private IEventsBL _eventsBL;
+        private readonly IEventsBL _eventsBL;
 
         public EventsController(IEventsBL eventsBL)
         {
@@ -28,6 +27,7 @@ namespace ADE.NEON.API.Controllers
         }
 
         [HttpGet, Route("{workspaceId:long}")]
+        [Authorize]
         public async Task<IHttpActionResult> GetAllEventsForWorkspace(long workspaceId)
         {
             var results = await _eventsBL.GetEventsForWorkspace(workspaceId);

@@ -50,8 +50,9 @@
     <Compile Include="IocConfig.cs" />
     <Compile Include="Profiles\AddressesProfile.cs" />
     <Compile Include="Profiles\EventsProfile.cs" />
-    <Compile Include="Profiles\UsersProfile.cs" />
+    <Compile Include="Profiles\UsersProfiles.cs" />
     <Compile Include="Profiles\VenuesProfile.cs" />
+    <Compile Include="Profiles\WorkspaceProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

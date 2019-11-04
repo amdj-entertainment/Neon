@@ -35,6 +35,7 @@
       <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,16 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\DatabaseContext.cs" />
     <Compile Include="IocConfig.cs" />
-    <Compile Include="Models\AddressModel.cs" />
-    <Compile Include="Models\CountryModel.cs" />
-    <Compile Include="Models\EventLimitedModel.cs" />
-    <Compile Include="Models\EventModel.cs" />
-    <Compile Include="Models\StateModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\UserProfileLimitedModel.cs" />
-    <Compile Include="Models\UserProfileModel.cs" />
-    <Compile Include="Models\VenueModel.cs" />
+    <Compile Include="Models\Address\AddressModel.cs" />
+    <Compile Include="Models\Address\CountryModel.cs" />
+    <Compile Include="Models\Events\EventLimitedModel.cs" />
+    <Compile Include="Models\Events\EventModel.cs" />
+    <Compile Include="Models\Address\StateModel.cs" />
+    <Compile Include="Models\Users\UserModel.cs" />
+    <Compile Include="Models\Users\UserProfileLimitedModel.cs" />
+    <Compile Include="Models\Users\UserProfileModel.cs" />
+    <Compile Include="Models\Users\UserRegisterModel.cs" />
+    <Compile Include="Models\Venues\VenueModel.cs" />
+    <Compile Include="Models\Workspaces\WorkspaceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CurrentTimeProvider.cs" />
     <Compile Include="Utilities\ICurrentTimeProvider.cs" />
