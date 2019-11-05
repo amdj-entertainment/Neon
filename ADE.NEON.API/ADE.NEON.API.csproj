@@ -65,7 +65,7 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -144,6 +144,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ADE.NEON.API.Security\ADE.NEON.API.Security.csproj">
+      <Project>{FF2D6F5C-7762-4E13-AC0E-7CD543E657D6}</Project>
+      <Name>ADE.NEON.API.Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ADE.NEON.BL\ADE.NEON.BL.csproj">
       <Project>{7f973504-27ab-4d68-a324-7d413177339a}</Project>
       <Name>ADE.NEON.BL</Name>

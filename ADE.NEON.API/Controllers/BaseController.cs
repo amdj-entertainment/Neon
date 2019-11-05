@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Web;
 using System.Web.Http;
+using ADE.NEON.API.Security;
 
 namespace ADE.NEON.API.Controllers
 {
@@ -11,7 +12,7 @@ namespace ADE.NEON.API.Controllers
     public class BaseController : ApiController
     {
         private IOwinContext _owinContext;
-        private IService _userService;
+        private IUserManagerService _userManagerService;
 
         protected virtual IOwinContext OwinContext => _owinContext ?? (_owinContext = HttpContext.Current.GetOwinContext());
 
@@ -19,10 +20,12 @@ namespace ADE.NEON.API.Controllers
         {
             get
             {
-                if (HttpContext.Current == null)
-                    return Guid.Empty;
-                var userIdString = HttpContext.Current
+                if (HttpContext.Current == null) return Guid.Empty;
+                var userIdString = HttpContext.Current.User.Identity.GetUserId();
+                return Guid.TryParse(userIdString, out var userId) ? userId : Guid.Empty;
             }
         }
+
+        protected virtual IUserManagerService UserManagerService => _userManagerService ?? (_userManagerService = new UserManagerService(OwinContext.GetUserManager<ApplicationUserManager>()));
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using ADE.NEON.API.Security;
+using ADE.NEON.API.Security.Models;
 
 namespace ADE.NEON.API.Controllers
 {
@@ -21,7 +23,23 @@ namespace ADE.NEON.API.Controllers
         public async Task<IHttpActionResult> RegisterUser(UserRegisterModel registerModel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
+            var user = new ApplicationUser
+            {
+                UserName = registerModel.UserName,
+                Email = registerModel.Email,
+                PhoneNumber = registerModel.PhoneNumber
+            };
 
+            try
+            {
+                var registrationToken = await UserManagerService.RegisterUser(user, registerModel.Password);
+
+                return null;
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Creating User");
+            }
         }
     }
 }

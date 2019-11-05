@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ADE.NEON.DAL;
 using ADE.NEON.DAL.Events;
+using ADE.NEON.Shared.Enums;
 using ADE.NEON.Shared.Models.Events;
 
 namespace ADE.NEON.BL.Events
@@ -21,7 +22,7 @@ namespace ADE.NEON.BL.Events
         }
         public async Task<IEnumerable<EventLimitedModel>> GetEventsForWorkspace(long workspaceId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork())
+            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork(DatabaseContext.Neon))
             {
                 var results = await _eventsDAL.GetEventsForWorkspace(unitOfWork, workspaceId);
                 return results;
@@ -30,7 +31,7 @@ namespace ADE.NEON.BL.Events
 
         public async Task<EventModel> GetEventForWorkspace(long eventId, long workspaceId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork())
+            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork(DatabaseContext.Neon))
             {
                 var result = await _eventsDAL.GetEventForWorkspace(unitOfWork, eventId, workspaceId);
                 return result;

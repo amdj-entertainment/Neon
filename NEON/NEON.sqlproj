@@ -62,6 +62,7 @@
     <Folder Include="Data" />
     <Folder Include="Data\_Always" />
     <Folder Include="Data\_Always\Events" />
+    <Folder Include="Data\_Always\Address" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Requests.sql" />
@@ -89,5 +90,6 @@
     <PostDeploy Include="Data\_Always\PostDeployment.sql" />
     <None Include="Data\PostDeployment.sql" />
     <None Include="Data\_Always\Events\EventStatus.sql" />
+    <None Include="Data\_Always\Address\States.sql" />
   </ItemGroup>
 </Project>
