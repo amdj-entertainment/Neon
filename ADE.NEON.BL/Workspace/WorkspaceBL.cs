@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ADE.NEON.DAL;
 using ADE.NEON.DAL.Workspace;
+using ADE.NEON.Shared.Enums;
 using ADE.NEON.Shared.Models.Workspaces;
 
 namespace ADE.NEON.BL.Workspace
@@ -22,7 +23,7 @@ namespace ADE.NEON.BL.Workspace
 
         public async Task<WorkspaceModel> GetWorkspaceById(long workspaceId)
         {
-            using(var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork())
+            using(var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork(DatabaseContext.Neon))
             {
                 var result = await _workspaceDAL.GetWorkspaceById(unitOfWork, workspaceId);
                 return result;
