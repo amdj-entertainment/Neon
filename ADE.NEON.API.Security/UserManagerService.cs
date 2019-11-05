@@ -151,7 +151,7 @@ namespace ADE.NEON.API.Security
             if (user == null) return false;
 
             IdentityResult result;
-            if (await IsSystemAdministrator(userId))
+            if (await IsSystemModerator(userId))
             {
                 await UserManager.RemoveFromRoleAsync(userId, ApplicationRoleManager.RoleNames.SystemModerator);
                 result = await UserManager.RemoveClaimAsync(userId, new Claim(ClaimTypes.Role, ApplicationRoleManager.RoleNames.SystemModerator));
@@ -172,7 +172,7 @@ namespace ADE.NEON.API.Security
             if (user == null) return false;
 
             IdentityResult result;
-            if (await IsSystemAdministrator(userId))
+            if (await IsSystemSupport(userId))
             {
                 await UserManager.RemoveFromRoleAsync(userId, ApplicationRoleManager.RoleNames.SystemSupport);
                 result = await UserManager.RemoveClaimAsync(userId, new Claim(ClaimTypes.Role, ApplicationRoleManager.RoleNames.SystemSupport));
@@ -193,7 +193,7 @@ namespace ADE.NEON.API.Security
             if (user == null) return false;
 
             IdentityResult result;
-            if (await IsSystemAdministrator(userId))
+            if (await IsSystemEditor(userId))
             {
                 await UserManager.RemoveFromRoleAsync(userId, ApplicationRoleManager.RoleNames.SystemEditor);
                 result = await UserManager.RemoveClaimAsync(userId, new Claim(ClaimTypes.Role, ApplicationRoleManager.RoleNames.SystemEditor));
