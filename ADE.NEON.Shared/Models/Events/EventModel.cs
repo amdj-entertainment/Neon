@@ -11,8 +11,8 @@ namespace ADE.NEON.Shared.Models.Events
         public string Title { get; set; }
         public string Description { get; set; }
         public long StatusId { get; set; }
-        public AddressModel Address { get; set; }
-        public VenueModel Venue { get; set; }
+        public virtual VenueModel Venue { get; set; }
+        public virtual AddressModel Address { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime RequestOpenDate { get; set; }

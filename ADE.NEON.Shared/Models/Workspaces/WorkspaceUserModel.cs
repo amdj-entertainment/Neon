@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ADE.NEON.Shared.Models.Workspaces
 {
-    public class WorkspaceModel
+    public class WorkspaceUserModel
     {
         public long Id { get; set; }
         public Guid UniqueId { get; set; }
-        public string Name { get; set; }
-        public virtual ICollection<WorkspaceUserModel> WorkspaceUsers { get; set; }
+        public Guid UserId { get; set; }
+        public long WorkspaceId { get; set; }
         public DateTime LastUpdate { get; set; }
         public DateTime CreateDate { get; set; }
     }

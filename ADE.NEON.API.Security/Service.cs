@@ -9,15 +9,15 @@ using Microsoft.AspNet.Identity;
 
 namespace ADE.NEON.API.Security
 {
-    public class UserManagerService : IUserManagerService
+    public class Service : IService
     {
         public ApplicationRoleManager ApplicationRoleManager { get; }
         public ApplicationUserManager UserManager { get; set; }
         public string SchemaPrefix { get; set; }
 
-        public UserManagerService() {}
+        public Service() {}
 
-        public UserManagerService(ApplicationUserManager applicationUserManager, ApplicationRoleManager applicationRoleManager = null)
+        public Service(ApplicationUserManager applicationUserManager, ApplicationRoleManager applicationRoleManager = null)
         {
             UserManager = applicationUserManager;
             ApplicationRoleManager = applicationRoleManager;
@@ -30,7 +30,7 @@ namespace ADE.NEON.API.Security
 
         public async Task<bool> FindUser(string username, string password)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
             var user = await UserManager.FindAsync(username, password);
 
             return user != null;
@@ -38,24 +38,24 @@ namespace ADE.NEON.API.Security
 
         public async Task<ApplicationUser> FindUser(Guid userId)
         {
-            if (UserManager == null) return null;
+            if (UserManager == null) throw new NullReferenceException();
             var user = await UserManager.FindByIdAsync(userId);
             return user;
         }
 
         public async Task<ApplicationUser> FindUser(string userName)
         {
-            if (UserManager == null) return null;
+            if (UserManager == null) throw new NullReferenceException();
             var user = await UserManager.FindByNameAsync(userName);
             return user;
         }
 
         public async Task<string> RegisterUser(ApplicationUser user, string password)
         {
-            if (UserManager == null) return null;
+            if (UserManager == null) throw new NullReferenceException();
 
             var result = await UserManager.CreateAsync(user, password);
-            if (!result.Succeeded) return null;
+            if (!result.Succeeded) throw new NullReferenceException();
 
             var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 
@@ -64,7 +64,7 @@ namespace ADE.NEON.API.Security
 
         public async Task<bool> ConfirmUser(Guid userId, string code)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
             if (userId == Guid.Empty) return false;
             if (string.IsNullOrWhiteSpace(code)) return false;
 
@@ -75,7 +75,7 @@ namespace ADE.NEON.API.Security
 
         public async Task<string> ForgotPassword(string userName)
         {
-            if (UserManager == null) return null;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByNameAsync(userName);
             if (user == null) return null;
@@ -88,7 +88,7 @@ namespace ADE.NEON.API.Security
 
         public async Task<bool> IsSystemAdministrator(Guid userId)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByIdAsync(userId);
 
@@ -97,7 +97,7 @@ namespace ADE.NEON.API.Security
 
         public async Task<bool> IsSystemModerator(Guid userId)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByIdAsync(userId);
 
@@ -106,7 +106,7 @@ namespace ADE.NEON.API.Security
 
         public async Task<bool> IsSystemSupport(Guid userId)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByIdAsync(userId);
 
@@ -115,7 +115,7 @@ namespace ADE.NEON.API.Security
 
         public async Task<bool> IsSystemEditor(Guid userId)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByIdAsync(userId);
 
@@ -124,7 +124,7 @@ namespace ADE.NEON.API.Security
 
         public async Task<bool> ToggleSystemAdministrator(Guid userId)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByIdAsync(userId);
             if (user == null) return false;
@@ -145,7 +145,7 @@ namespace ADE.NEON.API.Security
         }
         public async Task<bool> ToggleSystemModerator(Guid userId)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByIdAsync(userId);
             if (user == null) return false;
@@ -166,7 +166,7 @@ namespace ADE.NEON.API.Security
         }
         public async Task<bool> ToggleSystemSupport(Guid userId)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByIdAsync(userId);
             if (user == null) return false;
@@ -187,7 +187,7 @@ namespace ADE.NEON.API.Security
         }
         public async Task<bool> ToggleSystemEditor(Guid userId)
         {
-            if (UserManager == null) return false;
+            if (UserManager == null) throw new NullReferenceException();
 
             var user = await UserManager.FindByIdAsync(userId);
             if (user == null) return false;

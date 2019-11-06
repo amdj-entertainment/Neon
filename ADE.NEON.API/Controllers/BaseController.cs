@@ -12,7 +12,7 @@ namespace ADE.NEON.API.Controllers
     public class BaseController : ApiController
     {
         private IOwinContext _owinContext;
-        private IUserManagerService _userManagerService;
+        private IService _userManagerService;
 
         protected virtual IOwinContext OwinContext => _owinContext ?? (_owinContext = HttpContext.Current.GetOwinContext());
 
@@ -26,6 +26,6 @@ namespace ADE.NEON.API.Controllers
             }
         }
 
-        protected virtual IUserManagerService UserManagerService => _userManagerService ?? (_userManagerService = new UserManagerService(OwinContext.GetUserManager<ApplicationUserManager>()));
+        protected virtual IService UserManagerService => _userManagerService ?? (_userManagerService = new Service(OwinContext.GetUserManager<ApplicationUserManager>()));
     }
 }

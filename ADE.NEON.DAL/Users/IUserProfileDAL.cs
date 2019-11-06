@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ADE.NEON.DAL.Users
 {
-    public interface IUserProfile
+    public interface IUserProfileDAL
     {
         Task<UserProfileModel> CreateUserProfile(UnitOfWork unitOfWork, UserProfileModel userProfile);
     }

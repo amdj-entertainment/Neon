@@ -18,8 +18,8 @@ namespace ADE.NEON.DAL.EF
         public Workspace()
         {
             this.Events = new HashSet<Event>();
-            this.Users = new HashSet<User>();
             this.Venues = new HashSet<Venue>();
+            this.WorkspaceUsers = new HashSet<WorkspaceUser>();
         }
     
         public long Id { get; set; }
@@ -31,8 +31,8 @@ namespace ADE.NEON.DAL.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Event> Events { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venue> Venues { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WorkspaceUser> WorkspaceUsers { get; set; }
     }
 }

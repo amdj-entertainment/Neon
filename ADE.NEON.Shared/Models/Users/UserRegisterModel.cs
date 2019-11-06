@@ -40,6 +40,9 @@ namespace ADE.NEON.Shared.Models.Users
         public string PhoneNumber { get; set; }
 
         [Required]
+        public long CountryId { get; set; }
+
+        [Required]
         public long StateId { get; set; }
 
     }

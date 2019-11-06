@@ -9,11 +9,11 @@ using AutoMapper;
 
 namespace ADE.NEON.DAL.Users
 {
-    public class UserProfile : IUserProfile
+    public class UserProfileDAL : IUserProfileDAL
     {
         private IMapper _mapper;
 
-        public UserProfile(IMapper mapper)
+        public UserProfileDAL(IMapper mapper)
         {
             _mapper = mapper;
         }
@@ -26,7 +26,6 @@ namespace ADE.NEON.DAL.Users
                 var trackedEntity = unitOfWork.NeonContext.UsersProfiles.Add(profile);
 
                 await unitOfWork.NeonContext.SaveChangesAsync();
-                await unitOfWork.Complete();
             }
             catch (Exception)
             {

@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[NeonRole]
+(
+	[UniqueId]		UNIQUEIDENTIFIER		CONSTRAINT [DF_NeonRole_UniqueId]	DEFAULT (NEWID()) NOT NULL,
+	[Name]			NVARCHAR (128) NOT NULL,
+	[LastUpdate]	DATETIME2				CONSTRAINT [DF_NeonRole_LastUpdate] DEFAULT (GETDATE()) NOT NULL,
+	[CreateDate]	DATETIME2				CONSTRAINT [DF_NeonRole_CreateDate] DEFAULT (GETDATE()) NOT NULL,
+	CONSTRAINT [PK_NeonRole]			PRIMARY KEY CLUSTERED ([UniqueId] ASC),
+	CONSTRAINT [UK_NeonRole_UniqueId]	UNIQUE ([UniqueId])
+)
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex]
+	ON [dbo].[NeonRole] ([Name] ASC);

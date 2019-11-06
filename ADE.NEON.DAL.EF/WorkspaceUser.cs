@@ -12,29 +12,16 @@ namespace ADE.NEON.DAL.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class UsersProfile
+    public partial class WorkspaceUser
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UsersProfile()
-        {
-            this.Venues = new HashSet<Venue>();
-        }
-    
         public long Id { get; set; }
         public System.Guid UniqueId { get; set; }
         public System.Guid UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string AvatarUrl { get; set; }
-        public Nullable<long> AddressId { get; set; }
-        public string PhoneNumber { get; set; }
+        public long WorkspaceId { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public System.DateTime CreateDate { get; set; }
-        public string Email { get; set; }
     
-        public virtual Address Address { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venue> Venues { get; set; }
+        public virtual Workspace Workspace { get; set; }
         public virtual NeonUser NeonUser { get; set; }
     }
 }

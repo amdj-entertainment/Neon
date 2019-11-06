@@ -90,6 +90,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NeonContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NeonPreviousPassword.cs">
+      <DependentUpon>NeonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NeonRole.cs">
+      <DependentUpon>NeonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NeonUser.cs">
+      <DependentUpon>NeonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NeonUserClaim.cs">
+      <DependentUpon>NeonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NeonUserLogin.cs">
+      <DependentUpon>NeonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NeonUserRole.cs">
+      <DependentUpon>NeonContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs">
       <DependentUpon>NeonContext.tt</DependentUpon>
@@ -103,9 +121,6 @@
     <Compile Include="Track.cs">
       <DependentUpon>NeonContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>NeonContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="UsersProfile.cs">
       <DependentUpon>NeonContext.tt</DependentUpon>
     </Compile>
@@ -113,6 +128,9 @@
       <DependentUpon>NeonContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Workspace.cs">
+      <DependentUpon>NeonContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkspaceUser.cs">
       <DependentUpon>NeonContext.tt</DependentUpon>
     </Compile>
   </ItemGroup>

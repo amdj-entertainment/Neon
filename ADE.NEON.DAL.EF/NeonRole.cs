@@ -12,26 +12,20 @@ namespace ADE.NEON.DAL.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class NeonRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public NeonRole()
         {
-            this.UsersProfiles = new HashSet<UsersProfile>();
+            this.NeonUserRoles = new HashSet<NeonUserRole>();
         }
     
-        public long Id { get; set; }
         public System.Guid UniqueId { get; set; }
-        public long WorkspaceId { get; set; }
-        public string UserName { get; set; }
-        public string EmailAddress { get; set; }
-        public bool ConfirmedEmail { get; set; }
-        public string HashedPassword { get; set; }
+        public string Name { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual Workspace Workspace { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UsersProfile> UsersProfiles { get; set; }
+        public virtual ICollection<NeonUserRole> NeonUserRoles { get; set; }
     }
 }

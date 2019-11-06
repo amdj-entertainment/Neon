@@ -8,7 +8,7 @@ using ADE.NEON.API.Security.Models;
 
 namespace ADE.NEON.API.Security
 {
-    public interface IUserManagerService
+    public interface IService
     {
         ApplicationUserManager UserManager { get; set; }
 

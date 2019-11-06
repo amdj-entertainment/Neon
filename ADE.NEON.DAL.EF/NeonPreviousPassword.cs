@@ -12,22 +12,14 @@ namespace ADE.NEON.DAL.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class State
+    public partial class NeonPreviousPassword
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public State()
-        {
-            this.Addresses = new HashSet<Address>();
-        }
-    
         public long Id { get; set; }
         public System.Guid UniqueId { get; set; }
-        public string Name { get; set; }
-        public string Abbreveation { get; set; }
-        public System.DateTime LastUpdate { get; set; }
+        public System.Guid UserId { get; set; }
+        public string PasswordHash { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual NeonUser NeonUser { get; set; }
     }
 }

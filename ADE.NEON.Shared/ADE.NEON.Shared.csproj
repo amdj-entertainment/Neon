@@ -72,6 +72,7 @@
     <Compile Include="Models\Users\UserRegisterModel.cs" />
     <Compile Include="Models\Venues\VenueModel.cs" />
     <Compile Include="Models\Workspaces\WorkspaceModel.cs" />
+    <Compile Include="Models\Workspaces\WorkspaceUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CurrentTimeProvider.cs" />
     <Compile Include="Utilities\ICurrentTimeProvider.cs" />

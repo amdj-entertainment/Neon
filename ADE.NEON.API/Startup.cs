@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
@@ -10,29 +11,12 @@ using System.Web.Http;
 [assembly: OwinStartup(typeof(ADE.NEON.API.Startup))]
 namespace ADE.NEON.API
 {
-    public class Startup
+    public partial class Startup
     {
-        public void ConfigureAuth(IAppBuilder app)
+        public void Configuration(IAppBuilder builder)
         {
-            var OAuthOptions = new OAuthAuthorizationServerOptions
-            {
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(20),
-            };
-
-            app.UseOAuthAuthorizationServer(OAuthOptions);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
-            HttpConfiguration config = new HttpConfiguration();
-            WebApiConfig.Register(config);
-        }
-
-        public void Configuration(IAppBuilder app)
-        {
-            ConfigureAuth(app);
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-            IocConfig.Initialize();
+            builder.UseCors(CorsOptions.AllowAll);
+            ConfigureAuth(builder);
         }
     }
 }

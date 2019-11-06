@@ -72,15 +72,19 @@
     <Build Include="dbo\Tables\Artists.sql" />
     <Build Include="dbo\Tables\ArtistsTracks.sql" />
     <Build Include="dbo\Tables\Spotify.sql" />
-    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\NeonUsers.sql" />
     <Build Include="dbo\Tables\UsersProfiles.sql" />
     <Build Include="dbo\Tables\EventStatus.sql" />
     <Build Include="dbo\Tables\Addresses.sql" />
     <Build Include="dbo\Tables\Countries.sql" />
     <Build Include="dbo\Tables\State.sql" />
     <Build Include="dbo\Tables\Venues.sql" />
-    <Build Include="dbo\Tables\UserRoles.sql" />
-    <Build Include="dbo\Tables\Roles.sql" />
+    <Build Include="dbo\Tables\NeonPreviousPasswords.sql" />
+    <Build Include="dbo\Tables\NeonRole.sql" />
+    <Build Include="dbo\Tables\NeonUserClaim.sql" />
+    <Build Include="dbo\Tables\NeonUserRole.sql" />
+    <Build Include="dbo\Tables\WorkspaceUsers.sql" />
+    <Build Include="dbo\Tables\NeonUserLogin.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="local.publish.xml" />
