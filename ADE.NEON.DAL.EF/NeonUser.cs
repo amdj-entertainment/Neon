@@ -19,13 +19,10 @@ namespace ADE.NEON.DAL.EF
         {
             this.NeonPreviousPasswords = new HashSet<NeonPreviousPassword>();
             this.NeonUserClaims = new HashSet<NeonUserClaim>();
-            this.NeonUserClaims1 = new HashSet<NeonUserClaim>();
+            this.NeonUserLogins = new HashSet<NeonUserLogin>();
             this.NeonUserRoles = new HashSet<NeonUserRole>();
-            this.NeonUserRoles1 = new HashSet<NeonUserRole>();
             this.UsersProfiles = new HashSet<UsersProfile>();
             this.WorkspaceUsers = new HashSet<WorkspaceUser>();
-            this.NeonUserLogins = new HashSet<NeonUserLogin>();
-            this.NeonUserLogins1 = new HashSet<NeonUserLogin>();
         }
     
         public System.Guid UserId { get; set; }
@@ -49,18 +46,12 @@ namespace ADE.NEON.DAL.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NeonUserClaim> NeonUserClaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NeonUserClaim> NeonUserClaims1 { get; set; }
+        public virtual ICollection<NeonUserLogin> NeonUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NeonUserRole> NeonUserRoles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NeonUserRole> NeonUserRoles1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersProfile> UsersProfiles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkspaceUser> WorkspaceUsers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NeonUserLogin> NeonUserLogins { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NeonUserLogin> NeonUserLogins1 { get; set; }
     }
 }

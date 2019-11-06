@@ -76,6 +76,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CurrentTimeProvider.cs" />
     <Compile Include="Utilities\ICurrentTimeProvider.cs" />
+    <Compile Include="Utilities\IUniqueIdProvider.cs" />
+    <Compile Include="Utilities\UniqueIdProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

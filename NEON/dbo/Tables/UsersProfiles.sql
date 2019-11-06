@@ -12,6 +12,7 @@
 	[LastUpdate]	DATETIME2 CONSTRAINT [DF_UsersProfiles_LastUpdate] DEFAULT (GETDATE()) NOT NULL,
 	[CreateDate]	DATETIME2 CONSTRAINT [DF_UsersProfiles_CreateDate] DEFAULT (GETDATE()) NOT NULL,
 	CONSTRAINT [UK_UsersProfiles_UniqueId]	UNIQUE ([UniqueId]),
+	CONSTRAINT [CK_UsersProfiles_UniqueId] CHECK ([UniqueId] != '00000000-0000-0000-0000-000000000000'),
 	CONSTRAINT [FK_UsersProfiles_UserId]	FOREIGN KEY ([UserId])		REFERENCES [dbo].[NeonUsers] ([UserId]),
 	CONSTRAINT [FK_UsersProfiles_AddressId] FOREIGN KEY ([AddressId])	REFERENCES [dbo].[Addresses] ([Id])
 )

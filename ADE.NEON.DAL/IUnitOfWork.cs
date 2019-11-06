@@ -10,5 +10,6 @@ namespace ADE.NEON.DAL
     {
         Task Complete();
         void Cancel();
+        void ClearCache();
     }
 }

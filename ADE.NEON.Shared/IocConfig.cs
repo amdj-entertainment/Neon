@@ -8,6 +8,7 @@ namespace ADE.NEON.Shared
         public static void RegisterComponents(ContainerBuilder builder)
         {
             builder.RegisterType<CurrentTimeProvider>().As<ICurrentTimeProvider>();
+            builder.RegisterType<UniqueIdProvider>().As<IUniqueIdProvider>();
         }
     }
 }

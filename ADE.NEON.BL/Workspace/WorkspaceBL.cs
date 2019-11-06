@@ -23,11 +23,10 @@ namespace ADE.NEON.BL.Workspace
 
         public async Task<WorkspaceModel> GetWorkspaceById(long workspaceId)
         {
-            using(var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork(DatabaseContext.Neon))
-            {
-                var result = await _workspaceDAL.GetWorkspaceById(unitOfWork, workspaceId);
-                return result;
-            }
+            var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork();
+
+            var result = await _workspaceDAL.GetWorkspaceById(unitOfWork, workspaceId);
+            return result;
         }
 
         public Task<WorkspaceModel> GetWorkspaceByUniqueId(Guid workspaceGuid)
@@ -35,9 +34,14 @@ namespace ADE.NEON.BL.Workspace
             throw new NotImplementedException();
         }
 
-        public Task<WorkspaceModel> CreateNewWorkspace(WorkspaceModel workspace)
+        public async Task<WorkspaceModel> CreateNewWorkspace(WorkspaceModel workspace)
         {
-            throw new NotImplementedException();
+            var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork();
+
+            var result = await _workspaceDAL.CreateNewWorkspace(unitOfWork, workspace);
+
+            await unitOfWork.Complete();
+            return result;
         }
 
         public Task<bool> UpdateWorkspace(WorkspaceModel workspace)

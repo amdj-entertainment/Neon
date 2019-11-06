@@ -22,20 +22,17 @@ namespace ADE.NEON.BL.Events
         }
         public async Task<IEnumerable<EventLimitedModel>> GetEventsForWorkspace(long workspaceId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork(DatabaseContext.Neon))
-            {
-                var results = await _eventsDAL.GetEventsForWorkspace(unitOfWork, workspaceId);
-                return results;
-            }
+            var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork();
+            var results = await _eventsDAL.GetEventsForWorkspace(unitOfWork, workspaceId);
+            return results;
         }
 
         public async Task<EventModel> GetEventForWorkspace(long eventId, long workspaceId)
         {
-            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork(DatabaseContext.Neon))
-            {
-                var result = await _eventsDAL.GetEventForWorkspace(unitOfWork, eventId, workspaceId);
-                return result;
-            }
+            var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork();
+
+            var result = await _eventsDAL.GetEventForWorkspace(unitOfWork, eventId, workspaceId);
+            return result;
         }
     }
 }

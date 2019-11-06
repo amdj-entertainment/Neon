@@ -9,10 +9,16 @@ namespace ADE.NEON.DAL.AM.Profiles
         public UsersProfiles()
         {
             CreateMap<NeonUser, UserModel>();
+            CreateMap<UserModel, NeonUser>();
+
+            CreateMap<UsersProfile, UsersProfile>();
+            CreateMap<UserProfileModel, UserProfileModel>();
+
             CreateMap<UsersProfile, UserProfileModel>();
-            CreateMap<UserProfileModel, UsersProfile>()
-                .ForMember(dest => dest.Address, opts => opts.MapFrom(src => src.Address));
+            CreateMap<UserProfileModel, UsersProfile>();
+
             CreateMap<UsersProfile, UserProfileLimitedModel>();
+            CreateMap<UserProfileLimitedModel, UsersProfile>();
         }
     }
 }

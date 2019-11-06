@@ -1,4 +1,4 @@
-﻿using ADE.NEON.Shared.Models.Users;
+using ADE.NEON.Shared.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +21,11 @@ namespace ADE.NEON.API.Controllers
     [RoutePrefix("accounts")]
     public class AccountController : BaseController
     {
-        private IAuthenticationManager _authenticationManager;
-        private readonly ICurrentTimeProvider _currentTimeProvider;
         private readonly IWorkspaceBL _workspaceBL;
         private readonly IUserProfileBL _userProfileBL;
 
-        public AccountController(ICurrentTimeProvider currentTimeProvider, IWorkspaceBL workspaceBL, IUserProfileBL userProfileBL)
+        public AccountController(IWorkspaceBL workspaceBL, IUserProfileBL userProfileBL)
         {
-            _currentTimeProvider = currentTimeProvider;
             _workspaceBL = workspaceBL;
             _userProfileBL = userProfileBL;
         }
@@ -73,7 +70,7 @@ namespace ADE.NEON.API.Controllers
 
                 var workspace = new WorkspaceModel
                 {
-                    Name = string.Join(" ", registerModel.FirstName, registerModel.LastName),
+                    Name = string.Join("_", registerModel.FirstName, registerModel.LastName),
                     WorkspaceUsers = new List<WorkspaceUserModel>
                     {
                         new WorkspaceUserModel

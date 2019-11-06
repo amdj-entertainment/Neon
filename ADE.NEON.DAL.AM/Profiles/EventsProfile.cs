@@ -9,7 +9,10 @@ namespace ADE.NEON.DAL.AM.Profiles
         public EventsProfile()
         {
             CreateMap<Event, EventModel>();
+            CreateMap<EventModel, Event>();
+
             CreateMap<Event, EventLimitedModel>();
+            CreateMap<EventLimitedModel, Event>();
         }
     }
 }

@@ -23,6 +23,5 @@ namespace ADE.NEON.DAL.EF
         public System.DateTime CreateDate { get; set; }
     
         public virtual NeonUser NeonUser { get; set; }
-        public virtual NeonUser NeonUser1 { get; set; }
     }
 }

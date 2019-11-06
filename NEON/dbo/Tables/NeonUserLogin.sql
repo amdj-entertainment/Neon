@@ -6,7 +6,6 @@
 	[GuidUser_Id]	UNIQUEIDENTIFIER NOT NULL,
 	[CreateDate]	DATETIME2 CONSTRAINT [DF_NeonUserLogin_CreateDate] DEFAULT (GETDATE()) NOT NULL,
 	CONSTRAINT [PK_NeonUserLogin] PRIMARY KEY CLUSTERED ([LoginProvider] ASC, [UserId] ASC),
-	CONSTRAINT [FK_NeonUserLogin_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[NeonUsers] ([UserId]),
 	CONSTRAINT [FK_NeonUserLogin_GuidUser_Id] FOREIGN KEY ([GuidUser_Id]) REFERENCES [dbo].[NeonUsers] ([UserId])
 );
 GO

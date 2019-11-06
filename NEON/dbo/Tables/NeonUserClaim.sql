@@ -9,8 +9,7 @@
 	[CreateDate]	DATETIME2				CONSTRAINT [DF_NeonUserClaim_CreateDate] DEFAULT (GETDATE()) NOT NULL,
 	CONSTRAINT [PK_NeonUserClaim]				PRIMARY KEY CLUSTERED ([Id] ASC),
 	CONSTRAINT [UK_NeonUserClaim_UniqueId]		UNIQUE ([UniqueId]),
-	CONSTRAINT [FK_NeonUserClaim_GuidUser_Id]	FOREIGN KEY ([GuidUser_Id]) REFERENCES [dbo].[NeonUsers] ([UserId]),
-	CONSTRAINT [FK_NeonUserClaim_UserId]		FOREIGN KEY ([UserId]) REFERENCES [dbo].[NeonUsers] ([UserId])
+	CONSTRAINT [FK_NeonUserClaim_GuidUser_Id]	FOREIGN KEY ([GuidUser_Id]) REFERENCES [dbo].[NeonUsers] ([UserId])
 )
 GO
 CREATE NONCLUSTERED INDEX [GuidUserIndex]

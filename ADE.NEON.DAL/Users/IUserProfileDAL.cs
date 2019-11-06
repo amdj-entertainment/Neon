@@ -9,6 +9,12 @@ namespace ADE.NEON.DAL.Users
 {
     public interface IUserProfileDAL
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unitOfWork"></param>
+        /// <param name="userProfile"></param>
+        /// <returns></returns>
         Task<UserProfileModel> CreateUserProfile(UnitOfWork unitOfWork, UserProfileModel userProfile);
     }
 }

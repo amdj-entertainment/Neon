@@ -9,6 +9,6 @@ namespace ADE.NEON.DAL
 {
     public interface IUnitOfWorkFactory
     {
-        UnitOfWork CreateUnitOfWork(DatabaseContext database);
+        UnitOfWork CreateUnitOfWork();
     }
 }

@@ -42,8 +42,8 @@ namespace ADE.NEON.DAL.EF
         public virtual DbSet<NeonPreviousPassword> NeonPreviousPasswords { get; set; }
         public virtual DbSet<NeonRole> NeonRoles { get; set; }
         public virtual DbSet<NeonUserClaim> NeonUserClaims { get; set; }
+        public virtual DbSet<NeonUserLogin> NeonUserLogins { get; set; }
         public virtual DbSet<NeonUserRole> NeonUserRoles { get; set; }
         public virtual DbSet<NeonUser> NeonUsers { get; set; }
-        public virtual DbSet<NeonUserLogin> NeonUserLogins { get; set; }
     }
 }

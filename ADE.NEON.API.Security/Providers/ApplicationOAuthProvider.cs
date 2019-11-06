@@ -13,19 +13,19 @@ namespace ADE.NEON.API.Security.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        private readonly string _publicCLientId;
+        private readonly string _publicClientId;
         private readonly Func<UserManager<ApplicationUser, Guid>> _userManagerFactory;
         private readonly int _maximumFailedAttempts;
 
         public ApplicationOAuthProvider(string publicClientId, Func<UserManager<ApplicationUser, Guid>> userManagerFactory)
         {
-            _publicCLientId = publicClientId ?? throw new ArgumentNullException(nameof(publicClientId));
+            _publicClientId = publicClientId ?? throw new ArgumentNullException(nameof(publicClientId));
             _userManagerFactory = userManagerFactory ?? throw new ArgumentNullException(nameof(userManagerFactory));
         }
 
         public ApplicationOAuthProvider(string publicClientId, int failedLoginAttempts)
         {
-            _publicCLientId = publicClientId ?? throw new ArgumentNullException(nameof(publicClientId));
+            _publicClientId = publicClientId ?? throw new ArgumentNullException(nameof(publicClientId));
             _maximumFailedAttempts = failedLoginAttempts;
         }
 
@@ -78,6 +78,7 @@ namespace ADE.NEON.API.Security.Providers
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+            // Resource owner password credentials does not provide a client ID.
             if (context.ClientId == null)
             {
                 context.Validated();
@@ -88,7 +89,7 @@ namespace ADE.NEON.API.Security.Providers
 
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
-            if (context.ClientId == _publicCLientId)
+            if (context.ClientId == _publicClientId)
             {
                 var expectedRootUri = new Uri(context.Request.Uri, "/");
 

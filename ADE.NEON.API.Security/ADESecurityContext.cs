@@ -15,7 +15,7 @@ namespace ADE.NEON.API.Security
 
         protected ADESecurityContext(string prefix) : base("DefaultConnection")
         {
-            if (string.IsNullOrEmpty(prefix)) throw new ArgumentNullException("Prefix", "A database table name prefix is requird");
+            if (string.IsNullOrEmpty(prefix)) throw new ArgumentNullException(nameof(prefix), "A database table name prefix is required");
             _prefix = prefix;
         }
 

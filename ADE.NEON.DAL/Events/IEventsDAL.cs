@@ -13,7 +13,7 @@ namespace ADE.NEON.DAL.Events
         /// 
         /// </summary>
         /// <param name="unitOfWork"></param>
-        /// <param name="workspaceGuid"></param>
+        /// <param name="workspaceId"></param>
         /// <returns></returns>
         Task<IEnumerable<EventLimitedModel>> GetEventsForWorkspace(UnitOfWork unitOfWork, long workspaceId);
 

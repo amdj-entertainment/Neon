@@ -23,13 +23,12 @@ namespace ADE.NEON.BL.User
 
         public async Task<UserProfileModel> CreateUserProfile(UserProfileModel userProfile)
         {
-            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork(DatabaseContext.Neon))
-            {
-                var result = await _userProfileDAL.CreateUserProfile(unitOfWork, userProfile);
+            var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork();
 
-                await unitOfWork.Complete();
-                return result;
-            }
+            var result = await _userProfileDAL.CreateUserProfile(unitOfWork, userProfile);
+
+            await unitOfWork.Complete();
+            return result;
         }
     }
 }

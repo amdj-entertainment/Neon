@@ -10,7 +10,6 @@ namespace ADE.NEON.API.Security.Models
     {
         public ApplicationUser() : base()
         {
-            PreviousUserPasswords = new List<PreviousPassword>();
             CreateDate = DateTime.Now;
         }
 
@@ -22,6 +21,6 @@ namespace ADE.NEON.API.Security.Models
             return userIdentity;
         }
 
-        public virtual IList<PreviousPassword> PreviousUserPasswords { get; set; }
+        public virtual IList<PreviousPassword> PreviousUserPasswords { get; set; } = new List<PreviousPassword>();
     }
 }

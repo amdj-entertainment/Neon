@@ -12,6 +12,7 @@
 	[LastUpdate]		DATETIME2 CONSTRAINT [DF_Addresses_LastUpdate] DEFAULT (GETDATE()) NOT NULL,
 	[CreateDate]		DATETIME2 CONSTRAINT [DF_Addresses_CreateDate] DEFAULT (GETDATE()) NOT NULL,
 	CONSTRAINT [UK_Addresses_UniqueId]	UNIQUE ([UniqueId]),
+	CONSTRAINT [CK_Addresses_UniqueId] CHECK ([UniqueId] != '00000000-0000-0000-0000-000000000000'),
 	CONSTRAINT [FK_Addresses_CountryId] FOREIGN KEY ([CountryId])	REFERENCES [dbo].[Countries] ([Id]),
 	CONSTRAINT [FK_Addresses_StateId]	FOREIGN KEY ([StateId])		REFERENCES [dbo].[State] ([Id])
 )
