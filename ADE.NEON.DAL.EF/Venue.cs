@@ -26,7 +26,7 @@ namespace ADE.NEON.DAL.EF
         public string Name { get; set; }
         public long AddressId { get; set; }
         public Nullable<int> Rating { get; set; }
-        public Nullable<long> ContactUserId { get; set; }
+        public Nullable<System.Guid> ContactUserId { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public System.DateTime CreateDate { get; set; }
     

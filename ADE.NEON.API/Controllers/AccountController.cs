@@ -22,11 +22,13 @@ namespace ADE.NEON.API.Controllers
     public class AccountController : BaseController
     {
         private readonly IWorkspaceBL _workspaceBL;
+        private readonly IUserBL _userBL;
         private readonly IUserProfileBL _userProfileBL;
 
-        public AccountController(IWorkspaceBL workspaceBL, IUserProfileBL userProfileBL)
+        public AccountController(IWorkspaceBL workspaceBL, IUserBL userBL, IUserProfileBL userProfileBL)
         {
             _workspaceBL = workspaceBL;
+            _userBL = userBL;
             _userProfileBL = userProfileBL;
         }
 
@@ -88,6 +90,14 @@ namespace ADE.NEON.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [Authorize]
+        [HttpGet, Route("current")]
+        public async Task<IHttpActionResult> CurrentUser()
+        {
+            var result = await _userBL.GetCurrentUser(UserGuid);
+            return Ok(result);
         }
 
         /// <summary>

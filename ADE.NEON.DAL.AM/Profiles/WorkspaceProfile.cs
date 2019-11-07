@@ -16,6 +16,11 @@ namespace ADE.NEON.DAL.AM.Profiles
             CreateMap<Workspace, WorkspaceModel>();
             CreateMap<WorkspaceModel, Workspace>();
 
+            CreateMap<Workspace, WorkspaceLimitedModel>();
+            CreateMap<WorkspaceLimitedModel, Workspace>();
+
+            CreateMap<WorkspaceModel, WorkspaceLimitedModel>();
+
             CreateMap<WorkspaceUser, WorkspaceUserModel>();
             CreateMap<WorkspaceUserModel, WorkspaceUser>();
         }

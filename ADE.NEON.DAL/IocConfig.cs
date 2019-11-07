@@ -14,9 +14,17 @@ namespace ADE.NEON.DAL
     {
         public static void RegisterComponents(ContainerBuilder builder)
         {
+            // Global
             builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>();
+
+            // Events
             builder.RegisterType<EventsDAL>().As<IEventsDAL>();
+
+            // User
+            builder.RegisterType<UserDAL>().As<IUserDAL>();
             builder.RegisterType<UserProfileDAL>().As<IUserProfileDAL>();
+            
+            // Workspace
             builder.RegisterType<WorkspaceDAL>().As<IWorkspaceDAL>();
         }
     }

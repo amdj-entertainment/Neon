@@ -56,15 +56,15 @@ BEGIN
 				(49, 'Wisconsin'),
 				(50, 'Wyoming')
 		)
-		AS SOURCE ([Id], [Name], [Description])
+		AS SOURCE ([Id], [Name])
 		ON TARGET.Id = SOURCE.Id
 	WHEN MATCHED THEN
 		UPDATE SET 
 			[Name] = SOURCE.[Name]
 
 	WHEN NOT MATCHED BY TARGET THEN
-		INSERT ([Id], [Name], [Description])
-		VALUES (SOURCE.[Id], SOURCE.[Name], SOURCE.[Description])
+		INSERT ([Id], [Name])
+		VALUES (SOURCE.[Id], SOURCE.[Name])
 
 	WHEN NOT MATCHED BY SOURCE THEN DELETE;
 

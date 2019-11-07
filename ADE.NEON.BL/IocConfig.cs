@@ -14,8 +14,15 @@ namespace ADE.NEON.BL
     {
         public static void RegisterComponents(ContainerBuilder builder)
         {
+
+            // Events
             builder.RegisterType<EventsBL>().As<IEventsBL>();
+
+            // User
+            builder.RegisterType<UserBL>().As<IUserBL>();
             builder.RegisterType<UserProfileBL>().As<IUserProfileBL>();
+
+            // Workspace
             builder.RegisterType<WorkspaceBL>().As<IWorkspaceBL>();
         }
     }

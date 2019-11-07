@@ -37,9 +37,9 @@ namespace ADE.NEON.DAL.EF
     
         public virtual Address Address { get; set; }
         public virtual EventStatus EventStatus { get; set; }
-        public virtual Venue Venue { get; set; }
         public virtual Workspace Workspace { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Requests { get; set; }
+        public virtual Venue Venue { get; set; }
     }
 }

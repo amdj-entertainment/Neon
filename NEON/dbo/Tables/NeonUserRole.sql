@@ -8,7 +8,7 @@
 	[CreateDate]	DATETIME2				CONSTRAINT [DF_NeonUserRole_CreateDate] DEFAULT (GETDATE()) NOT NULL,
 	CONSTRAINT [UK_NeonUserRole_UniqueId]		UNIQUE ([UniqueId]),
 	CONSTRAINT [PK_NeonUserRole_UserId_RoleId]	PRIMARY KEY CLUSTERED ([UserId] ASC, [RoleId] ASC),
-	CONSTRAINT [FK_NeonUserRole_RoleId]			FOREIGN KEY ([RoleId]) REFERENCES [dbo].[NeonRole] ([UniqueId]) ON DELETE CASCADE,
+	CONSTRAINT [FK_NeonUserRole_RoleId]			FOREIGN KEY ([RoleId]) REFERENCES [dbo].[NeonRole] ([Id]) ON DELETE CASCADE,
 	CONSTRAINT [FK_NeonUserRole_GuidUserId]		FOREIGN KEY ([GuidUser_Id]) REFERENCES [dbo].[NeonUsers] ([UserId])
 );
 GO

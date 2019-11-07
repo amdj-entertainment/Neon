@@ -66,11 +66,13 @@
     <Compile Include="Models\Events\EventLimitedModel.cs" />
     <Compile Include="Models\Events\EventModel.cs" />
     <Compile Include="Models\Address\StateModel.cs" />
+    <Compile Include="Models\Users\UserLimitedModel.cs" />
     <Compile Include="Models\Users\UserModel.cs" />
     <Compile Include="Models\Users\UserProfileLimitedModel.cs" />
     <Compile Include="Models\Users\UserProfileModel.cs" />
     <Compile Include="Models\Users\UserRegisterModel.cs" />
     <Compile Include="Models\Venues\VenueModel.cs" />
+    <Compile Include="Models\Workspaces\WorkspaceLimitedModel.cs" />
     <Compile Include="Models\Workspaces\WorkspaceModel.cs" />
     <Compile Include="Models\Workspaces\WorkspaceUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

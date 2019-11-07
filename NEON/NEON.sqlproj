@@ -89,6 +89,7 @@
   <ItemGroup>
     <None Include="local.publish.xml" />
     <None Include="dev.publish.xml" />
+    <None Include="Data\_Always\Address\Countries.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data\_Always\PostDeployment.sql" />

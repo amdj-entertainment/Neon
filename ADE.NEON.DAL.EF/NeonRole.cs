@@ -20,7 +20,7 @@ namespace ADE.NEON.DAL.EF
             this.NeonUserRoles = new HashSet<NeonUserRole>();
         }
     
-        public System.Guid UniqueId { get; set; }
+        public System.Guid Id { get; set; }
         public string Name { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public System.DateTime CreateDate { get; set; }

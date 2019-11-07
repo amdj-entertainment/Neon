@@ -8,45 +8,45 @@
         <EntityTypeShape EntityType="NeonModel.Address" Width="1.5" PointX="0.75" PointY="4.375" />
         <EntityTypeShape EntityType="NeonModel.Artist" Width="1.5" PointX="8.75" PointY="10.75" />
         <EntityTypeShape EntityType="NeonModel.ArtistsTrack" Width="1.5" PointX="11" PointY="10.875" />
-        <EntityTypeShape EntityType="NeonModel.Country" Width="1.5" PointX="1.5" PointY="15.875" />
+        <EntityTypeShape EntityType="NeonModel.Country" Width="1.5" PointX="3" PointY="15.625" />
         <EntityTypeShape EntityType="NeonModel.Event" Width="1.5" PointX="7.5" PointY="5" />
         <EntityTypeShape EntityType="NeonModel.EventStatus" Width="1.5" PointX="5.25" PointY="3.25" />
         <EntityTypeShape EntityType="NeonModel.Request" Width="1.5" PointX="9.75" PointY="5.875" />
         <EntityTypeShape EntityType="NeonModel.Spotify" Width="1.5" PointX="5.25" PointY="14.875" />
         <EntityTypeShape EntityType="NeonModel.State" Width="1.5" PointX="1.5" PointY="0.75" />
-        <EntityTypeShape EntityType="NeonModel.Track" Width="1.5" PointX="7.5" PointY="15" />
-        <EntityTypeShape EntityType="NeonModel.UsersProfile" Width="1.5" PointX="3" PointY="7.5" />
-        <EntityTypeShape EntityType="NeonModel.Venue" Width="1.5" PointX="5.25" PointY="6.625" />
+        <EntityTypeShape EntityType="NeonModel.Track" Width="1.5" PointX="7.875" PointY="15" />
         <EntityTypeShape EntityType="NeonModel.Workspace" Width="1.5" PointX="3" PointY="4.125" />
         <EntityTypeShape EntityType="NeonModel.WorkspaceUser" Width="1.5" PointX="6" PointY="11.125" />
         <AssociationConnector Association="NeonModel.FK_Addresses_CountryId" />
         <AssociationConnector Association="NeonModel.FK_Addresses_StateId" />
         <AssociationConnector Association="NeonModel.FK_Events_AddressId" />
-        <AssociationConnector Association="NeonModel.FK_UsersProfiles_AddressId" />
-        <AssociationConnector Association="NeonModel.FK_Venues_AddressId" />
         <AssociationConnector Association="NeonModel.FK_ArtistsTracks_ArtistId" />
         <AssociationConnector Association="NeonModel.FK_Events_StatusId" />
-        <AssociationConnector Association="NeonModel.FK_Events_VenueId" />
         <AssociationConnector Association="NeonModel.FK_Events_WorkspaceId" />
         <AssociationConnector Association="NeonModel.FK_Requests_EventId" />
         <AssociationConnector Association="NeonModel.FK_Requests_TrackId" />
         <AssociationConnector Association="NeonModel.FK_Tracks_SpotifyId" />
-        <AssociationConnector Association="NeonModel.FK_Venues_ContactUserId" />
-        <AssociationConnector Association="NeonModel.FK_Venues_WorkspaceId" />
         <AssociationConnector Association="NeonModel.FK_WorkspaceUsers_WorkspaceId" />
         <EntityTypeShape EntityType="NeonModel.NeonPreviousPassword" Width="1.5" PointX="3" PointY="19" />
-        <EntityTypeShape EntityType="NeonModel.NeonRole" Width="1.5" PointX="7.75" PointY="18.625" />
         <EntityTypeShape EntityType="NeonModel.NeonUserClaim" Width="1.5" PointX="3" PointY="12.375" />
         <EntityTypeShape EntityType="NeonModel.NeonUserLogin" Width="1.5" PointX="3" PointY="21.875" />
-        <EntityTypeShape EntityType="NeonModel.NeonUserRole" Width="1.5" PointX="11.125" PointY="15.125" />
-        <EntityTypeShape EntityType="NeonModel.NeonUser" Width="1.5" PointX="0.5" PointY="10" />
-        <AssociationConnector Association="NeonModel.FK_NeonPreviousPasswords_UserId" />
+        <EntityTypeShape EntityType="NeonModel.NeonRole" Width="1.5" PointX="5.75" PointY="25.75" />
+        <EntityTypeShape EntityType="NeonModel.NeonUserRole" Width="1.5" PointX="8" PointY="19.5" />
         <AssociationConnector Association="NeonModel.FK_NeonUserRole_RoleId" />
+        <EntityTypeShape EntityType="NeonModel.NeonUser" Width="1.5" PointX="0.75" PointY="15" />
+        <AssociationConnector Association="NeonModel.FK_NeonPreviousPasswords_UserId" />
         <AssociationConnector Association="NeonModel.FK_NeonUserClaim_GuidUser_Id" />
         <AssociationConnector Association="NeonModel.FK_NeonUserLogin_GuidUser_Id" />
         <AssociationConnector Association="NeonModel.FK_NeonUserRole_GuidUserId" />
-        <AssociationConnector Association="NeonModel.FK_UsersProfiles_UserId" />
         <AssociationConnector Association="NeonModel.FK_WorkspaceUsers_UserId" />
+        <EntityTypeShape EntityType="NeonModel.UsersProfile" Width="1.5" PointX="11" PointY="14.375" />
+        <EntityTypeShape EntityType="NeonModel.Venue" Width="1.5" PointX="13.25" PointY="9.375" />
+        <AssociationConnector Association="NeonModel.FK_UsersProfiles_AddressId" />
+        <AssociationConnector Association="NeonModel.FK_Venues_AddressId" />
+        <AssociationConnector Association="NeonModel.FK_Events_VenueId" />
+        <AssociationConnector Association="NeonModel.FK_UsersProfiles_UserId" />
+        <AssociationConnector Association="NeonModel.FK_Venues_ContactUserId" />
+        <AssociationConnector Association="NeonModel.FK_Venues_WorkspaceId" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

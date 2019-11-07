@@ -53,7 +53,7 @@ namespace ADE.NEON.API.Security.Providers
 
             if (await userManager.IsLockedOutAsync(user.Id))
             {
-                context.SetError("user_lockout", "The user si locked out.");
+                context.SetError("user_lockout", "The user is locked out.");
                 return;
             }
 

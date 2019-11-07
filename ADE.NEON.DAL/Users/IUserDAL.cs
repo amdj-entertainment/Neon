@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ADE.NEON.BL.User
+namespace ADE.NEON.DAL.Users
 {
-    public interface IUserBL
+    public interface IUserDAL
     {
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="unitOfWork"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<UserLimitedModel> GetCurrentUser(Guid userId);
+        Task<UserLimitedModel> GetCurrentUser(UnitOfWork unitOfWork, Guid userId);
     }
 }
