@@ -38,12 +38,12 @@ namespace ADE.NEON.DAL.EF
         public virtual DbSet<Workspace> Workspaces { get; set; }
         public virtual DbSet<WorkspaceUser> WorkspaceUsers { get; set; }
         public virtual DbSet<NeonPreviousPassword> NeonPreviousPasswords { get; set; }
-        public virtual DbSet<NeonUserClaim> NeonUserClaims { get; set; }
         public virtual DbSet<NeonUserLogin> NeonUserLogins { get; set; }
         public virtual DbSet<NeonRole> NeonRoles { get; set; }
-        public virtual DbSet<NeonUserRole> NeonUserRoles { get; set; }
-        public virtual DbSet<NeonUser> NeonUsers { get; set; }
         public virtual DbSet<UsersProfile> UsersProfiles { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
+        public virtual DbSet<NeonUserRole> NeonUserRoles { get; set; }
+        public virtual DbSet<NeonUserClaim> NeonUserClaims { get; set; }
+        public virtual DbSet<NeonUser> NeonUsers { get; set; }
     }
 }

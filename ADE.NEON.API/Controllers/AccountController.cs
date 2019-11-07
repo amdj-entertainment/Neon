@@ -15,6 +15,7 @@ using ADE.NEON.Shared.Models.Workspaces;
 using ADE.NEON.Shared.Models.Address;
 using Microsoft.AspNet.Identity;
 using System.Net;
+using ADE.NEON.API.Security.Attributes;
 
 namespace ADE.NEON.API.Controllers
 {
@@ -98,6 +99,46 @@ namespace ADE.NEON.API.Controllers
         {
             var result = await _userBL.GetCurrentUser(UserGuid);
             return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPost, Route("{userId:guid}/toggle/sa")]
+        public async Task<IHttpActionResult> ToggleSystemAdministrator(Guid userId)
+        {
+            var state = await UserManagerService.ToggleSystemAdministrator(userId);
+            if (state) return Ok(state);
+
+            return Content(HttpStatusCode.MethodNotAllowed, "Unauthorized User");
+        }
+
+        [AuthorizeAdministrator]
+        [HttpPost, Route("{userId:guid}/toggle/sm")]
+        public async Task<IHttpActionResult> ToggleSystemModerator(Guid userId)
+        {
+            var state = await UserManagerService.ToggleSystemModerator(userId);
+            if (state) return Ok(state);
+
+            return Content(HttpStatusCode.MethodNotAllowed, "Unauthorized User");
+        }
+
+        [AuthorizeAdministrator]
+        [HttpPost, Route("{userId:guid}/toggle/sp")]
+        public async Task<IHttpActionResult> ToggleSystemSupport(Guid userId)
+        {
+            var state = await UserManagerService.ToggleSystemSupport(userId);
+            if (state) return Ok(state);
+
+            return Content(HttpStatusCode.MethodNotAllowed, "Unauthorized User");
+        }
+
+        [AuthorizeAdministrator]
+        [HttpPost, Route("{userId:guid}/toggle/ed")]
+        public async Task<IHttpActionResult> ToggleSystemEditor(Guid userId)
+        {
+            var state = await UserManagerService.ToggleSystemEditor(userId);
+            if (state) return Ok(state);
+
+            return Content(HttpStatusCode.MethodNotAllowed, "Unauthorized User");
         }
 
         /// <summary>

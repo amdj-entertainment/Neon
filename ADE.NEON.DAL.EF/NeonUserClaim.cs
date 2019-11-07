@@ -14,7 +14,7 @@ namespace ADE.NEON.DAL.EF
     
     public partial class NeonUserClaim
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public System.Guid UniqueId { get; set; }
         public System.Guid UserId { get; set; }
         public string ClaimType { get; set; }

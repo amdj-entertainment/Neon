@@ -33,8 +33,8 @@ namespace ADE.NEON.DAL.EF
         public System.DateTime CreateDate { get; set; }
     
         public virtual Address Address { get; set; }
-        public virtual NeonUser NeonUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venue> Venues { get; set; }
+        public virtual NeonUser NeonUser { get; set; }
     }
 }

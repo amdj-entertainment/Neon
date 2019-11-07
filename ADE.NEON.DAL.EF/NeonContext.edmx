@@ -107,7 +107,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ClaimType" Type="nvarchar(max)" />
@@ -135,7 +135,7 @@
           <Property Name="UniqueId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="GuidUser_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GuidUser_Id" Type="uniqueidentifier" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="NeonUsers">
@@ -356,15 +356,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NeonUserClaim_GuidUser_Id">
-          <End Role="NeonUsers" Type="Self.NeonUsers" Multiplicity="0..1" />
+        <Association Name="FK_NeonUserClaim_UserId">
+          <End Role="NeonUsers" Type="Self.NeonUsers" Multiplicity="1" />
           <End Role="NeonUserClaim" Type="Self.NeonUserClaim" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NeonUsers">
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="NeonUserClaim">
-              <PropertyRef Name="GuidUser_Id" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -381,7 +381,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NeonUserRole_GuidUserId">
-          <End Role="NeonUsers" Type="Self.NeonUsers" Multiplicity="1" />
+          <End Role="NeonUsers" Type="Self.NeonUsers" Multiplicity="0..1" />
           <End Role="NeonUserRole" Type="Self.NeonUserRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NeonUsers">
@@ -583,7 +583,7 @@
             <End Role="NeonUsers" EntitySet="NeonUsers" />
             <End Role="NeonPreviousPasswords" EntitySet="NeonPreviousPasswords" />
           </AssociationSet>
-          <AssociationSet Name="FK_NeonUserClaim_GuidUser_Id" Association="Self.FK_NeonUserClaim_GuidUser_Id">
+          <AssociationSet Name="FK_NeonUserClaim_UserId" Association="Self.FK_NeonUserClaim_UserId">
             <End Role="NeonUsers" EntitySet="NeonUsers" />
             <End Role="NeonUserClaim" EntitySet="NeonUserClaim" />
           </AssociationSet>
@@ -698,35 +698,8 @@
             <End Role="WorkspaceUser" EntitySet="WorkspaceUsers" />
           </AssociationSet>
           <EntitySet Name="NeonPreviousPasswords" EntityType="NeonModel.NeonPreviousPassword" />
-          <EntitySet Name="NeonUserClaims" EntityType="NeonModel.NeonUserClaim" />
           <EntitySet Name="NeonUserLogins" EntityType="NeonModel.NeonUserLogin" />
           <EntitySet Name="NeonRoles" EntityType="NeonModel.NeonRole" />
-          <EntitySet Name="NeonUserRoles" EntityType="NeonModel.NeonUserRole" />
-          <AssociationSet Name="FK_NeonUserRole_RoleId" Association="NeonModel.FK_NeonUserRole_RoleId">
-            <End Role="NeonRole" EntitySet="NeonRoles" />
-            <End Role="NeonUserRole" EntitySet="NeonUserRoles" />
-          </AssociationSet>
-          <EntitySet Name="NeonUsers" EntityType="NeonModel.NeonUser" />
-          <AssociationSet Name="FK_NeonPreviousPasswords_UserId" Association="NeonModel.FK_NeonPreviousPasswords_UserId">
-            <End Role="NeonUser" EntitySet="NeonUsers" />
-            <End Role="NeonPreviousPassword" EntitySet="NeonPreviousPasswords" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NeonUserClaim_GuidUser_Id" Association="NeonModel.FK_NeonUserClaim_GuidUser_Id">
-            <End Role="NeonUser" EntitySet="NeonUsers" />
-            <End Role="NeonUserClaim" EntitySet="NeonUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NeonUserLogin_GuidUser_Id" Association="NeonModel.FK_NeonUserLogin_GuidUser_Id">
-            <End Role="NeonUser" EntitySet="NeonUsers" />
-            <End Role="NeonUserLogin" EntitySet="NeonUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NeonUserRole_GuidUserId" Association="NeonModel.FK_NeonUserRole_GuidUserId">
-            <End Role="NeonUser" EntitySet="NeonUsers" />
-            <End Role="NeonUserRole" EntitySet="NeonUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WorkspaceUsers_UserId" Association="NeonModel.FK_WorkspaceUsers_UserId">
-            <End Role="NeonUser" EntitySet="NeonUsers" />
-            <End Role="WorkspaceUser" EntitySet="WorkspaceUsers" />
-          </AssociationSet>
           <EntitySet Name="UsersProfiles" EntityType="NeonModel.UsersProfile" />
           <EntitySet Name="Venues" EntityType="NeonModel.Venue" />
           <AssociationSet Name="FK_UsersProfiles_AddressId" Association="NeonModel.FK_UsersProfiles_AddressId">
@@ -741,10 +714,6 @@
             <End Role="Venue" EntitySet="Venues" />
             <End Role="Event" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersProfiles_UserId" Association="NeonModel.FK_UsersProfiles_UserId">
-            <End Role="NeonUser" EntitySet="NeonUsers" />
-            <End Role="UsersProfile" EntitySet="UsersProfiles" />
-          </AssociationSet>
           <AssociationSet Name="FK_Venues_ContactUserId" Association="NeonModel.FK_Venues_ContactUserId">
             <End Role="UsersProfile" EntitySet="UsersProfiles" />
             <End Role="Venue" EntitySet="Venues" />
@@ -752,6 +721,37 @@
           <AssociationSet Name="FK_Venues_WorkspaceId" Association="NeonModel.FK_Venues_WorkspaceId">
             <End Role="Workspace" EntitySet="Workspaces" />
             <End Role="Venue" EntitySet="Venues" />
+          </AssociationSet>
+          <EntitySet Name="NeonUserRoles" EntityType="NeonModel.NeonUserRole" />
+          <AssociationSet Name="FK_NeonUserRole_RoleId" Association="NeonModel.FK_NeonUserRole_RoleId">
+            <End Role="NeonRole" EntitySet="NeonRoles" />
+            <End Role="NeonUserRole" EntitySet="NeonUserRoles" />
+          </AssociationSet>
+          <EntitySet Name="NeonUserClaims" EntityType="NeonModel.NeonUserClaim" />
+          <EntitySet Name="NeonUsers" EntityType="NeonModel.NeonUser" />
+          <AssociationSet Name="FK_NeonPreviousPasswords_UserId" Association="NeonModel.FK_NeonPreviousPasswords_UserId">
+            <End Role="NeonUser" EntitySet="NeonUsers" />
+            <End Role="NeonPreviousPassword" EntitySet="NeonPreviousPasswords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NeonUserClaim_UserId" Association="NeonModel.FK_NeonUserClaim_UserId">
+            <End Role="NeonUser" EntitySet="NeonUsers" />
+            <End Role="NeonUserClaim" EntitySet="NeonUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NeonUserLogin_GuidUser_Id" Association="NeonModel.FK_NeonUserLogin_GuidUser_Id">
+            <End Role="NeonUser" EntitySet="NeonUsers" />
+            <End Role="NeonUserLogin" EntitySet="NeonUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NeonUserRole_GuidUserId" Association="NeonModel.FK_NeonUserRole_GuidUserId">
+            <End Role="NeonUser" EntitySet="NeonUsers" />
+            <End Role="NeonUserRole" EntitySet="NeonUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProfiles_UserId" Association="NeonModel.FK_UsersProfiles_UserId">
+            <End Role="NeonUser" EntitySet="NeonUsers" />
+            <End Role="UsersProfile" EntitySet="UsersProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkspaceUsers_UserId" Association="NeonModel.FK_WorkspaceUsers_UserId">
+            <End Role="NeonUser" EntitySet="NeonUsers" />
+            <End Role="WorkspaceUser" EntitySet="WorkspaceUsers" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Address">
@@ -1061,19 +1061,6 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="NeonUser" Relationship="NeonModel.FK_NeonPreviousPasswords_UserId" FromRole="NeonPreviousPassword" ToRole="NeonUser" />
         </EntityType>
-        <EntityType Name="NeonUserClaim">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UniqueId" Type="Guid" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GuidUser_Id" Type="Guid" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="NeonUser" Relationship="NeonModel.FK_NeonUserClaim_GuidUser_Id" FromRole="NeonUserClaim" ToRole="NeonUser" />
-        </EntityType>
         <EntityType Name="NeonUserLogin">
           <Key>
             <PropertyRef Name="LoginProvider" />
@@ -1096,120 +1083,6 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="NeonUserRoles" Relationship="NeonModel.FK_NeonUserRole_RoleId" FromRole="NeonRole" ToRole="NeonUserRole" />
         </EntityType>
-        <EntityType Name="NeonUserRole">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UniqueId" Type="Guid" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="RoleId" Type="Guid" Nullable="false" />
-          <Property Name="GuidUser_Id" Type="Guid" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="NeonRole" Relationship="NeonModel.FK_NeonUserRole_RoleId" FromRole="NeonUserRole" ToRole="NeonRole" />
-          <NavigationProperty Name="NeonUser" Relationship="NeonModel.FK_NeonUserRole_GuidUserId" FromRole="NeonUserRole" ToRole="NeonUser" />
-        </EntityType>
-        <Association Name="FK_NeonUserRole_RoleId">
-          <End Type="NeonModel.NeonRole" Role="NeonRole" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="NeonModel.NeonUserRole" Role="NeonUserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NeonRole">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NeonUserRole">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="NeonUser">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="7" />
-          <Property Name="SecurityStamp" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="NeonPreviousPasswords" Relationship="NeonModel.FK_NeonPreviousPasswords_UserId" FromRole="NeonUser" ToRole="NeonPreviousPassword" />
-          <NavigationProperty Name="NeonUserClaims" Relationship="NeonModel.FK_NeonUserClaim_GuidUser_Id" FromRole="NeonUser" ToRole="NeonUserClaim" />
-          <NavigationProperty Name="NeonUserLogins" Relationship="NeonModel.FK_NeonUserLogin_GuidUser_Id" FromRole="NeonUser" ToRole="NeonUserLogin" />
-          <NavigationProperty Name="NeonUserRoles" Relationship="NeonModel.FK_NeonUserRole_GuidUserId" FromRole="NeonUser" ToRole="NeonUserRole" />
-          <NavigationProperty Name="WorkspaceUsers" Relationship="NeonModel.FK_WorkspaceUsers_UserId" FromRole="NeonUser" ToRole="WorkspaceUser" />
-          <NavigationProperty Name="UsersProfile" Relationship="NeonModel.FK_UsersProfiles_UserId" FromRole="NeonUser" ToRole="UsersProfile" />
-        </EntityType>
-        <Association Name="FK_NeonPreviousPasswords_UserId">
-          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1" />
-          <End Type="NeonModel.NeonPreviousPassword" Role="NeonPreviousPassword" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NeonUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="NeonPreviousPassword">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NeonUserClaim_GuidUser_Id">
-          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="0..1" />
-          <End Type="NeonModel.NeonUserClaim" Role="NeonUserClaim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NeonUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="NeonUserClaim">
-              <PropertyRef Name="GuidUser_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NeonUserLogin_GuidUser_Id">
-          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1" />
-          <End Type="NeonModel.NeonUserLogin" Role="NeonUserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NeonUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="NeonUserLogin">
-              <PropertyRef Name="GuidUser_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NeonUserRole_GuidUserId">
-          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1" />
-          <End Type="NeonModel.NeonUserRole" Role="NeonUserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NeonUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="NeonUserRole">
-              <PropertyRef Name="GuidUser_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WorkspaceUsers_UserId">
-          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1" />
-          <End Type="NeonModel.WorkspaceUser" Role="WorkspaceUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NeonUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="WorkspaceUser">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="UsersProfile">
           <Key>
             <PropertyRef Name="UserId" />
@@ -1226,8 +1099,8 @@
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="Address" Relationship="NeonModel.FK_UsersProfiles_AddressId" FromRole="UsersProfile" ToRole="Address" />
-          <NavigationProperty Name="NeonUser" Relationship="NeonModel.FK_UsersProfiles_UserId" FromRole="UsersProfile" ToRole="NeonUser" />
           <NavigationProperty Name="Venues" Relationship="NeonModel.FK_Venues_ContactUserId" FromRole="UsersProfile" ToRole="Venue" />
+          <NavigationProperty Name="NeonUser" Relationship="NeonModel.FK_UsersProfiles_UserId" FromRole="UsersProfile" ToRole="NeonUser" />
         </EntityType>
         <EntityType Name="Venue">
           <Key>
@@ -1285,20 +1158,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersProfiles_UserId">
-          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="NeonModel.UsersProfile" Role="UsersProfile" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="NeonUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UsersProfile">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Venues_ContactUserId">
           <End Type="NeonModel.UsersProfile" Role="UsersProfile" Multiplicity="0..1" />
           <End Type="NeonModel.Venue" Role="Venue" Multiplicity="*" />
@@ -1320,6 +1179,147 @@
             </Principal>
             <Dependent Role="Venue">
               <PropertyRef Name="WorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NeonUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="GuidUser_Id" Type="Guid" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="NeonRole" Relationship="NeonModel.FK_NeonUserRole_RoleId" FromRole="NeonUserRole" ToRole="NeonRole" />
+          <NavigationProperty Name="NeonUser" Relationship="NeonModel.FK_NeonUserRole_GuidUserId" FromRole="NeonUserRole" ToRole="NeonUser" />
+        </EntityType>
+        <Association Name="FK_NeonUserRole_RoleId">
+          <End Type="NeonModel.NeonRole" Role="NeonRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NeonModel.NeonUserRole" Role="NeonUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NeonRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NeonUserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NeonUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GuidUser_Id" Type="Guid" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="NeonUser" Relationship="NeonModel.FK_NeonUserClaim_UserId" FromRole="NeonUserClaim" ToRole="NeonUser" />
+        </EntityType>
+        <EntityType Name="NeonUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="7" />
+          <Property Name="SecurityStamp" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="NeonPreviousPasswords" Relationship="NeonModel.FK_NeonPreviousPasswords_UserId" FromRole="NeonUser" ToRole="NeonPreviousPassword" />
+          <NavigationProperty Name="NeonUserClaims" Relationship="NeonModel.FK_NeonUserClaim_UserId" FromRole="NeonUser" ToRole="NeonUserClaim" />
+          <NavigationProperty Name="NeonUserLogins" Relationship="NeonModel.FK_NeonUserLogin_GuidUser_Id" FromRole="NeonUser" ToRole="NeonUserLogin" />
+          <NavigationProperty Name="NeonUserRoles" Relationship="NeonModel.FK_NeonUserRole_GuidUserId" FromRole="NeonUser" ToRole="NeonUserRole" />
+          <NavigationProperty Name="UsersProfile" Relationship="NeonModel.FK_UsersProfiles_UserId" FromRole="NeonUser" ToRole="UsersProfile" />
+          <NavigationProperty Name="WorkspaceUsers" Relationship="NeonModel.FK_WorkspaceUsers_UserId" FromRole="NeonUser" ToRole="WorkspaceUser" />
+        </EntityType>
+        <Association Name="FK_NeonPreviousPasswords_UserId">
+          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1" />
+          <End Type="NeonModel.NeonPreviousPassword" Role="NeonPreviousPassword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NeonUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NeonPreviousPassword">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NeonUserClaim_UserId">
+          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1" />
+          <End Type="NeonModel.NeonUserClaim" Role="NeonUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NeonUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NeonUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NeonUserLogin_GuidUser_Id">
+          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1" />
+          <End Type="NeonModel.NeonUserLogin" Role="NeonUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NeonUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NeonUserLogin">
+              <PropertyRef Name="GuidUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NeonUserRole_GuidUserId">
+          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="0..1" />
+          <End Type="NeonModel.NeonUserRole" Role="NeonUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NeonUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NeonUserRole">
+              <PropertyRef Name="GuidUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProfiles_UserId">
+          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NeonModel.UsersProfile" Role="UsersProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NeonUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkspaceUsers_UserId">
+          <End Type="NeonModel.NeonUser" Role="NeonUser" Multiplicity="1" />
+          <End Type="NeonModel.WorkspaceUser" Role="WorkspaceUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NeonUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="WorkspaceUser">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1503,19 +1503,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NeonUserClaims">
-            <EntityTypeMapping TypeName="NeonModel.NeonUserClaim">
-              <MappingFragment StoreEntitySet="NeonUserClaim">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="GuidUser_Id" ColumnName="GuidUser_Id" />
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="NeonUserLogins">
             <EntityTypeMapping TypeName="NeonModel.NeonUserLogin">
               <MappingFragment StoreEntitySet="NeonUserLogin">
@@ -1534,39 +1521,6 @@
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NeonUserRoles">
-            <EntityTypeMapping TypeName="NeonModel.NeonUserRole">
-              <MappingFragment StoreEntitySet="NeonUserRole">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="GuidUser_Id" ColumnName="GuidUser_Id" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NeonUsers">
-            <EntityTypeMapping TypeName="NeonModel.NeonUser">
-              <MappingFragment StoreEntitySet="NeonUsers">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1599,6 +1553,52 @@
                 <ScalarProperty Name="WorkspaceId" ColumnName="WorkspaceId" />
                 <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NeonUserRoles">
+            <EntityTypeMapping TypeName="NeonModel.NeonUserRole">
+              <MappingFragment StoreEntitySet="NeonUserRole">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GuidUser_Id" ColumnName="GuidUser_Id" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NeonUserClaims">
+            <EntityTypeMapping TypeName="NeonModel.NeonUserClaim">
+              <MappingFragment StoreEntitySet="NeonUserClaim">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GuidUser_Id" ColumnName="GuidUser_Id" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NeonUsers">
+            <EntityTypeMapping TypeName="NeonModel.NeonUser">
+              <MappingFragment StoreEntitySet="NeonUsers">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

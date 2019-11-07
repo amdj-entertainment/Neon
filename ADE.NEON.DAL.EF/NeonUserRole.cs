@@ -18,7 +18,7 @@ namespace ADE.NEON.DAL.EF
         public System.Guid UniqueId { get; set; }
         public System.Guid UserId { get; set; }
         public System.Guid RoleId { get; set; }
-        public System.Guid GuidUser_Id { get; set; }
+        public Nullable<System.Guid> GuidUser_Id { get; set; }
         public System.DateTime CreateDate { get; set; }
     
         public virtual NeonRole NeonRole { get; set; }

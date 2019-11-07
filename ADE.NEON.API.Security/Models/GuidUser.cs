@@ -9,9 +9,12 @@ namespace ADE.NEON.API.Security.Models
 {
     public class GuidUser : IdentityUser<Guid, GuidUserLogin, GuidUserRole, GuidUserClaim>
     {
-        public GuidUser() {}
+        public GuidUser()
+        {
+            Id = Guid.NewGuid();
+        }
 
-        public override Guid Id { get; set; } = Guid.NewGuid();
+        public override Guid Id { get; set; }
         public GuidUser(string name) : this()
         {
             // ReSharper disable once VirtualMemberCallInConstructor

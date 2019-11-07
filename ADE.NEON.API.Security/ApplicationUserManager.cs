@@ -91,4 +91,23 @@ namespace ADE.NEON.API.Security
                 .Any(x => PasswordHasher.VerifyHashedPassword(x, newPassword) != PasswordVerificationResult.Failed);
         }
     }
+    public static class IdentityInitializer
+    {
+        public static void Initialize(IOwinContext owinContext)
+        {
+            var roleManager = owinContext.Get<ApplicationRoleManager>();
+
+            CreateRoleSafe(roleManager, ApplicationRoleManager.RoleNames.SystemAdministrator);
+            CreateRoleSafe(roleManager, ApplicationRoleManager.RoleNames.SystemModerator);
+            CreateRoleSafe(roleManager, ApplicationRoleManager.RoleNames.SystemEditor);
+            CreateRoleSafe(roleManager, ApplicationRoleManager.RoleNames.SystemSupport);
+            CreateRoleSafe(roleManager, ApplicationRoleManager.RoleNames.StandardUser);
+        }
+
+        private static IdentityResult CreateRoleSafe(ApplicationRoleManager roleManager, string roleName)
+        {
+            roleName.Trim();
+            return !roleManager.RoleExists(roleName) ? roleManager.Create(new GuidRole { Name = roleName }) : null;
+        }
+    }
 }

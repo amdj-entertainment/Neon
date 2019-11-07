@@ -48,8 +48,8 @@ namespace ADE.NEON.DAL.EF
         public virtual ICollection<NeonUserLogin> NeonUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NeonUserRole> NeonUserRoles { get; set; }
+        public virtual UsersProfile UsersProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkspaceUser> WorkspaceUsers { get; set; }
-        public virtual UsersProfile UsersProfile { get; set; }
     }
 }

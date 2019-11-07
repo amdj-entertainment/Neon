@@ -63,6 +63,7 @@
     <Folder Include="Data\_Always" />
     <Folder Include="Data\_Always\Events" />
     <Folder Include="Data\_Always\Address" />
+    <Folder Include="Data\_Always\Security" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Requests.sql" />
@@ -90,6 +91,7 @@
     <None Include="local.publish.xml" />
     <None Include="dev.publish.xml" />
     <None Include="Data\_Always\Address\Countries.sql" />
+    <None Include="Data\_Always\Security\NeonRoles.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data\_Always\PostDeployment.sql" />
